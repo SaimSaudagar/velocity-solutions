@@ -1,4 +1,5 @@
 import { AlertTriangle, Clock, ShieldOff, Users } from "lucide-react";
+import { motion } from "framer-motion";
 
 const problems = [
   {
@@ -30,7 +31,13 @@ const Problem = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
       
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
             The Problem
           </span>
@@ -42,14 +49,17 @@ const Problem = () => {
             You need enterprise-quality infrastructure, but you don't have enterprise timelines or budgets. 
             Traditional options leave you stuck.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
           {problems.map((problem, index) => (
-            <div
+            <motion.div
               key={problem.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300"
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-destructive/10 text-destructive">
@@ -64,12 +74,18 @@ const Problem = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* The Dilemma */}
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto"
+        >
           <div className="relative p-8 rounded-2xl border border-border bg-card/50 overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary" />
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
@@ -86,7 +102,7 @@ const Problem = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
