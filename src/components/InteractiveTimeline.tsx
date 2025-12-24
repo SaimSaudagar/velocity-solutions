@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Shield, Zap, TrendingUp, CheckCircle, ChevronDown, Clock, FileText, Server } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const stages = [
   {
@@ -86,7 +87,13 @@ const InteractiveTimeline = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50" />
 
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
             The Solution
           </span>
@@ -99,7 +106,13 @@ const InteractiveTimeline = () => {
           </p>
 
           {/* Comparison Badge */}
-          <div className="inline-flex items-center gap-6 p-4 rounded-2xl bg-card border border-border">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-flex items-center gap-6 p-4 rounded-2xl bg-card border border-border"
+          >
             <div className="text-center">
               <p className="text-2xl font-bold text-primary">8-20 Weeks</p>
               <p className="text-sm text-muted-foreground">Our Timeline</p>
@@ -109,8 +122,8 @@ const InteractiveTimeline = () => {
               <p className="text-2xl font-bold text-muted-foreground line-through">6-12 Months</p>
               <p className="text-sm text-muted-foreground">Typical Agency</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Interactive Timeline */}
         <div className="max-w-5xl mx-auto">
@@ -127,8 +140,12 @@ const InteractiveTimeline = () => {
                 const isEven = index % 2 === 0;
 
                 return (
-                  <div
+                  <motion.div
                     key={stage.number}
+                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: index * 0.15 }}
                     className={cn(
                       "relative",
                       "md:flex md:items-start",
@@ -137,7 +154,9 @@ const InteractiveTimeline = () => {
                   >
                     {/* Timeline Node */}
                     <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 z-20">
-                      <div
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                         className={cn(
                           "w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 cursor-pointer",
                           "bg-gradient-to-br shadow-lg",
@@ -149,7 +168,7 @@ const InteractiveTimeline = () => {
                         onMouseLeave={() => setHoveredStage(null)}
                       >
                         <stage.icon className="w-7 h-7 text-white" />
-                      </div>
+                      </motion.div>
                     </div>
 
                     {/* Content Card */}
@@ -208,11 +227,14 @@ const InteractiveTimeline = () => {
                         </p>
 
                         {/* Expanded Content */}
-                        <div
-                          className={cn(
-                            "overflow-hidden transition-all duration-500",
-                            isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-                          )}
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: isExpanded ? "auto" : 0,
+                            opacity: isExpanded ? 1 : 0,
+                          }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                          className="overflow-hidden"
                         >
                           {/* Quote */}
                           <div className="p-4 rounded-xl bg-secondary/50 border border-border mb-6">
@@ -249,7 +271,7 @@ const InteractiveTimeline = () => {
                               ))}
                             </ul>
                           </div>
-                        </div>
+                        </motion.div>
 
                         {/* Click hint */}
                         {!isExpanded && (
@@ -262,7 +284,7 @@ const InteractiveTimeline = () => {
 
                     {/* Spacer for alternating layout */}
                     <div className="hidden md:block md:w-[calc(50%-4rem)]" />
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -270,12 +292,18 @@ const InteractiveTimeline = () => {
         </div>
 
         {/* Why It Works */}
-        <div className="max-w-3xl mx-auto mt-16 p-6 rounded-2xl bg-card/50 border border-border text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="max-w-3xl mx-auto mt-16 p-6 rounded-2xl bg-card/50 border border-border text-center"
+        >
           <p className="text-lg text-muted-foreground italic">
             "The S.P.S. Methodology prevents the technical debt that kills Series B momentum — 
             delivering enterprise outcomes in startup timelines."
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { ArrowUpRight, Quote } from "lucide-react";
+import { motion } from "framer-motion";
 
 const caseStudies = [
   {
@@ -68,7 +69,13 @@ const CaseStudies = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
             Case Studies
           </span>
@@ -78,12 +85,16 @@ const CaseStudies = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real projects. Real outcomes. Systems running in production today.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {caseStudies.map((study) => (
-            <div
+          {caseStudies.map((study, index) => (
+            <motion.div
               key={study.company}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               className="group flex flex-col p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300"
             >
               {/* Header */}
@@ -146,7 +157,7 @@ const CaseStudies = () => {
                 <span className="text-sm font-medium text-primary">{study.result}</span>
                 <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

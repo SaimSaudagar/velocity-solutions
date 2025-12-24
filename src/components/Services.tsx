@@ -1,5 +1,6 @@
 import { Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const packages = [
   {
@@ -64,7 +65,13 @@ const Services = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
 
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
             Service Packages
           </span>
@@ -74,12 +81,16 @@ const Services = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             All packages follow the same S.P.S. methodology. The difference is scope, complexity, and support level.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {packages.map((pkg) => (
-            <div
+          {packages.map((pkg, index) => (
+            <motion.div
               key={pkg.name}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               className={`relative flex flex-col p-8 rounded-2xl border transition-all duration-300 ${
                 pkg.popular
                   ? "bg-gradient-card border-primary shadow-glow-sm scale-105"
@@ -127,7 +138,7 @@ const Services = () => {
               <Button variant={pkg.popular ? "hero" : "heroOutline"} size="lg" className="w-full">
                 Get Started
               </Button>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
