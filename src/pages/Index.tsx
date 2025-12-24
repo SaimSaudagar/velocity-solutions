@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
-import Solution from "@/components/Solution";
+import InteractiveTimeline from "@/components/InteractiveTimeline";
 import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
 import WhyChoose from "@/components/WhyChoose";
@@ -15,7 +15,7 @@ const Index = () => {
       <main>
         <Hero />
         <Problem />
-        <Solution />
+        <InteractiveTimeline />
         <Services />
         <CaseStudies />
         <WhyChoose />
