@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-dark.svg";
 
 const navigation = [
   { name: "Problem", href: "#problem" },
@@ -41,8 +43,8 @@ const Header = () => {
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-gradient">SS</span>
-            <span className="hidden sm:block text-lg font-semibold text-foreground">Saim Saudagar</span>
+            <img src={logoLight} alt="Saim Saudagar" className="h-10 w-auto hidden dark:block" />
+            <img src={logoDark} alt="Saim Saudagar" className="h-10 w-auto dark:hidden" />
           </Link>
 
           {/* Desktop Navigation */}
