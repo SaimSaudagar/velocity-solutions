@@ -1,7 +1,7 @@
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoLight from "@/assets/logo-light.svg";
-import logoDark from "@/assets/logo-dark.svg";
+import logoDark from "@/assets/logo-light.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
