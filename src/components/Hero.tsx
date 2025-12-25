@@ -1,8 +1,16 @@
 import { ArrowRight, Calendar, Shield, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const scrollToWork = () => {
+    const element = document.querySelector("#work");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Effects */}
@@ -74,11 +82,13 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <Button variant="hero" size="xl" className="w-full sm:w-auto">
-              <Calendar className="w-5 h-5" />
-              Book Free Consultation
+            <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
+              <Link to="/book">
+                <Calendar className="w-5 h-5" />
+                Book Free Consultation
+              </Link>
             </Button>
-            <Button variant="heroOutline" size="xl" className="w-full sm:w-auto">
+            <Button variant="heroOutline" size="xl" className="w-full sm:w-auto" onClick={scrollToWork}>
               See Live Projects
               <ArrowRight className="w-5 h-5" />
             </Button>
