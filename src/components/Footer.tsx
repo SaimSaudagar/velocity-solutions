@@ -1,5 +1,7 @@
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-dark.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,8 +20,8 @@ const Footer = () => {
           {/* Logo & Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-gradient">SS</span>
-              <span className="text-lg font-semibold text-foreground">Saim Saudagar</span>
+              <img src={logoLight} alt="Saim Saudagar" className="h-10 w-auto hidden dark:block" />
+              <img src={logoDark} alt="Saim Saudagar" className="h-10 w-auto dark:hidden" />
             </Link>
             <p className="text-sm text-muted-foreground">
               © {currentYear} Saim Saudagar. All rights reserved.
