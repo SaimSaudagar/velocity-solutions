@@ -1,6 +1,7 @@
 import { Calendar, ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
@@ -68,13 +69,17 @@ const CTA = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Button variant="hero" size="xl">
-                  <Calendar className="w-5 h-5" />
-                  Book Free Consultation
+                <Button variant="hero" size="xl" asChild>
+                  <Link to="/book">
+                    <Calendar className="w-5 h-5" />
+                    Book Free Consultation
+                  </Link>
                 </Button>
-                <Button variant="heroOutline" size="xl">
-                  Get Architecture Audit
-                  <ArrowRight className="w-5 h-5" />
+                <Button variant="heroOutline" size="xl" asChild>
+                  <a href="mailto:contact@saimsaudagar.com?subject=Architecture Audit Request">
+                    Get Architecture Audit
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
                 </Button>
               </motion.div>
 

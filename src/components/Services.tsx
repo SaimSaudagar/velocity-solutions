@@ -1,6 +1,7 @@
 import { Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const packages = [
   {
@@ -135,8 +136,8 @@ const Services = () => {
               </div>
 
               {/* CTA */}
-              <Button variant={pkg.popular ? "hero" : "heroOutline"} size="lg" className="w-full">
-                Get Started
+              <Button variant={pkg.popular ? "hero" : "heroOutline"} size="lg" className="w-full" asChild>
+                <Link to="/book">Get Started</Link>
               </Button>
             </motion.div>
           ))}

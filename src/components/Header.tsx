@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Problem", href: "#problem" },
@@ -22,6 +23,14 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (href: string) => {
+    setIsMobileMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -31,28 +40,28 @@ const Header = () => {
       <div className="container px-4 md:px-6">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold text-gradient">SS</span>
             <span className="hidden sm:block text-lg font-semibold text-foreground">Saim Saudagar</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => scrollToSection(item.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.name}
-              </a>
+              </button>
             ))}
           </div>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="hero" size="default">
-              Book a Call
+            <Button variant="hero" size="default" asChild>
+              <Link to="/book">Book a Call</Link>
             </Button>
           </div>
 
@@ -70,18 +79,17 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-lg">
             <div className="flex flex-col gap-4">
               {navigation.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => scrollToSection(item.href)}
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors text-left"
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
               <div className="px-4 pt-4 border-t border-border">
-                <Button variant="hero" size="lg" className="w-full">
-                  Book a Call
+                <Button variant="hero" size="lg" className="w-full" asChild>
+                  <Link to="/book">Book a Call</Link>
                 </Button>
               </div>
             </div>

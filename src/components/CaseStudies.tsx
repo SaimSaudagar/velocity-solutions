@@ -1,8 +1,10 @@
 import { ArrowUpRight, Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
+    slug: "onlypark",
     company: "OnlyPark",
     type: "Dashboard Modernization",
     timeline: "12-16 Weeks",
@@ -22,6 +24,7 @@ const caseStudies = [
     result: "Complete Platform Rebuild",
   },
   {
+    slug: "pip-collective",
     company: "The Pip Collective",
     type: "Platform Stabilization",
     timeline: "Ongoing",
@@ -41,6 +44,7 @@ const caseStudies = [
     result: "Revenue Recovered",
   },
   {
+    slug: "crypto-arbitrage",
     company: "Crypto Arbitrage Platform",
     type: "Logic Correction & Deployment",
     timeline: "2-4 Weeks",
@@ -89,75 +93,76 @@ const CaseStudies = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.company}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group flex flex-col p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300"
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">
-                    {study.company}
-                  </h3>
-                  <p className="text-sm text-primary">{study.type}</p>
-                </div>
-                <span className="px-3 py-1 text-xs font-medium text-muted-foreground bg-secondary rounded-lg">
-                  {study.timeline}
-                </span>
-              </div>
-
-              {/* Before/After */}
-              <div className="space-y-6 mb-6 flex-grow">
-                <div>
-                  <p className="text-xs font-medium text-destructive uppercase tracking-wider mb-3">Before</p>
-                  <ul className="space-y-2">
-                    {study.before.map((item) => (
-                      <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-destructive/50 mt-1.5 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-primary uppercase tracking-wider mb-3">After</p>
-                  <ul className="space-y-2">
-                    {study.after.map((item) => (
-                      <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {study.stack.map((tech) => (
-                  <span key={tech} className="px-2 py-1 text-xs text-muted-foreground bg-secondary rounded">
-                    {tech}
+            <Link key={study.company} to={`/case-study/${study.slug}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="group flex flex-col p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">
+                      {study.company}
+                    </h3>
+                    <p className="text-sm text-primary">{study.type}</p>
+                  </div>
+                  <span className="px-3 py-1 text-xs font-medium text-muted-foreground bg-secondary rounded-lg">
+                    {study.timeline}
                   </span>
-                ))}
-              </div>
+                </div>
 
-              {/* Testimonial */}
-              <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                <Quote className="w-4 h-4 text-primary mb-2" />
-                <p className="text-sm text-foreground italic mb-2">{study.testimonial}</p>
-                <p className="text-xs text-muted-foreground">— {study.author}</p>
-              </div>
+                {/* Before/After */}
+                <div className="space-y-6 mb-6 flex-grow">
+                  <div>
+                    <p className="text-xs font-medium text-destructive uppercase tracking-wider mb-3">Before</p>
+                    <ul className="space-y-2">
+                      {study.before.map((item) => (
+                        <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-destructive/50 mt-1.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-primary uppercase tracking-wider mb-3">After</p>
+                    <ul className="space-y-2">
+                      {study.after.map((item) => (
+                        <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
 
-              {/* Result Badge */}
-              <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
-                <span className="text-sm font-medium text-primary">{study.result}</span>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-            </motion.div>
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {study.stack.map((tech) => (
+                    <span key={tech} className="px-2 py-1 text-xs text-muted-foreground bg-secondary rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Testimonial */}
+                <div className="p-4 rounded-xl bg-secondary/30 border border-border">
+                  <Quote className="w-4 h-4 text-primary mb-2" />
+                  <p className="text-sm text-foreground italic mb-2">{study.testimonial}</p>
+                  <p className="text-xs text-muted-foreground">— {study.author}</p>
+                </div>
+
+                {/* Result Badge */}
+                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+                  <span className="text-sm font-medium text-primary">{study.result}</span>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
