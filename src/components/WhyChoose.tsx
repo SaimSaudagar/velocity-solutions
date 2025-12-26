@@ -37,9 +37,14 @@ const reasons = [
 const WhyChoose = () => {
   return (
     <section id="why" className="relative py-20 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
+      
+      {/* Floating elements */}
+      <div className="absolute top-32 left-20 w-1.5 h-1.5 rounded-full bg-primary/40 animate-float" />
+      <div className="absolute bottom-40 right-32 w-2 h-2 rounded-full bg-primary/30 animate-float" style={{ animationDelay: '1.5s' }} />
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div
