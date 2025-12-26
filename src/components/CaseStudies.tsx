@@ -1,4 +1,4 @@
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight, Quote, ImageIcon, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -8,66 +8,36 @@ const caseStudies = [
     company: "OnlyPark",
     type: "Dashboard Modernization",
     timeline: "12-16 Weeks",
-    before: [
-      "Legacy Laravel dashboard unresponsive under load",
-      "API delays causing operational bottlenecks",
-      "Previous developers disengaged & unresponsive",
-    ],
-    after: [
-      "Modern Next.js + NestJS architecture",
-      "Optimized APIs for speed and scalability",
-      "Reliable delivery leading to contract extension",
-    ],
-    stack: ["Next.js", "NestJS", "AWS EC2", "AWS RDS"],
-    testimonial: "Thank you for everything you're doing - we greatly appreciate it & very much enjoy working with you.",
-    author: "OP Business Owner",
-    result: "Complete Platform Rebuild",
+    result: "10x Performance Boost",
+    stack: ["Next.js", "NestJS", "AWS"],
+    testimonial: "We greatly appreciate it & very much enjoy working with you.",
+    author: "Business Owner",
   },
   {
     slug: "pip-collective",
     company: "The Pip Collective",
     type: "Platform Stabilization",
     timeline: "Ongoing",
-    before: [
-      "Numerous bugs, login issues & payment failures",
-      "Slow APIs affecting user experience",
-      "Previous team abandoned the project",
-    ],
-    after: [
-      "Auth/login fixed, payments restored & reliable",
-      "Significant API performance improvements",
-      "Ongoing feature development & maintenance",
-    ],
-    stack: ["Full-Stack", "Payment Systems", "API Optimization"],
-    testimonial: "F**king brilliant bud, great work as always.",
-    author: "PC Platform Owner",
     result: "Revenue Recovered",
+    stack: ["Full-Stack", "Payments", "API"],
+    testimonial: "Brilliant work as always.",
+    author: "Platform Owner",
   },
   {
     slug: "crypto-arbitrage",
-    company: "Crypto Arbitrage Platform",
-    type: "Logic Correction & Deployment",
+    company: "Crypto Arbitrage",
+    type: "Logic & Deployment",
     timeline: "2-4 Weeks",
-    before: [
-      "Complex arbitrage logic with critical bugs",
-      "Platform unable to execute trades properly",
-      "Previous developer left code in broken state",
-    ],
-    after: [
-      "Fixed and optimized trading logic",
-      "Stable production deployment",
-      "Full operational capability restored",
-    ],
-    stack: ["Backend Logic", "Trading Systems", "Deployment"],
-    testimonial: "Quick turnaround and deep technical understanding of complex trading systems.",
+    result: "Trading Restored",
+    stack: ["Backend", "Trading", "Deploy"],
+    testimonial: "Quick turnaround and deep technical understanding.",
     author: "Platform Owner",
-    result: "Trading Operations Restored",
   },
 ];
 
 const CaseStudies = () => {
   return (
-    <section id="work" className="relative py-24 overflow-hidden">
+    <section id="work" className="relative py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
@@ -78,20 +48,20 @@ const CaseStudies = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
             Case Studies
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Production-Ready <span className="text-gradient">Results</span>
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">
+            Production <span className="text-gradient">Results</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Real projects. Real outcomes. Systems running in production today.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {caseStudies.map((study, index) => (
             <Link key={study.company} to={`/case-study/${study.slug}`}>
               <motion.div
@@ -99,66 +69,63 @@ const CaseStudies = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group flex flex-col p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
+                className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
               >
+                {/* Project Image Placeholder */}
+                <div className="relative w-full h-32 md:h-40 mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden flex items-center justify-center group-hover:border-primary/30 transition-colors">
+                  <div className="text-center">
+                    <ImageIcon className="w-8 h-8 text-muted-foreground/50 mx-auto mb-2" />
+                    <p className="text-xs text-muted-foreground/50">Project Screenshot</p>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+
                 {/* Header */}
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
                       {study.company}
                     </h3>
-                    <p className="text-sm text-primary">{study.type}</p>
+                    <p className="text-xs text-primary">{study.type}</p>
                   </div>
-                  <span className="px-3 py-1 text-xs font-medium text-muted-foreground bg-secondary rounded-lg">
+                  <span className="px-2 py-1 text-xs text-muted-foreground bg-secondary rounded">
                     {study.timeline}
                   </span>
                 </div>
 
-                {/* Before/After */}
-                <div className="space-y-6 mb-6 flex-grow">
-                  <div>
-                    <p className="text-xs font-medium text-destructive uppercase tracking-wider mb-3">Before</p>
-                    <ul className="space-y-2">
-                      {study.before.map((item) => (
-                        <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-destructive/50 mt-1.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-primary uppercase tracking-wider mb-3">After</p>
-                    <ul className="space-y-2">
-                      {study.after.map((item) => (
-                        <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                {/* Result Badge */}
+                <div className="px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 mb-4">
+                  <p className="text-sm font-medium text-primary">{study.result}</p>
                 </div>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {study.stack.map((tech) => (
-                    <span key={tech} className="px-2 py-1 text-xs text-muted-foreground bg-secondary rounded">
+                    <span key={tech} className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Testimonial */}
-                <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                  <Quote className="w-4 h-4 text-primary mb-2" />
-                  <p className="text-sm text-foreground italic mb-2">{study.testimonial}</p>
-                  <p className="text-xs text-muted-foreground">— {study.author}</p>
+                {/* Client Testimonial with Avatar Placeholder */}
+                <div className="p-3 rounded-lg bg-secondary/30 border border-border mt-auto">
+                  <div className="flex items-start gap-3">
+                    {/* Client Image Placeholder */}
+                    <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-muted-foreground/50" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <Quote className="w-3 h-3 text-primary mb-1" />
+                      <p className="text-xs text-foreground/80 italic line-clamp-2">{study.testimonial}</p>
+                      <p className="text-xs text-muted-foreground mt-1">— {study.author}</p>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Result Badge */}
-                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
-                  <span className="text-sm font-medium text-primary">{study.result}</span>
+                {/* View More */}
+                <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">View Details</span>
                   <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
               </motion.div>
