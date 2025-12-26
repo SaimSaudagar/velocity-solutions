@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import beforeImage from "@/assets/onlypark/before.png";
 import afterImage from "@/assets/onlypark/after.png";
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-light.svg";
 
 const caseStudiesData: Record<string, {
   company: string;
@@ -136,7 +138,8 @@ const CaseStudy = () => {
         <div className="container px-4 md:px-6">
           <nav className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-gradient">SS</span>
+              <img src={logoLight} alt="Saim Saudagar" className="h-10 w-auto hidden dark:block" />
+              <img src={logoDark} alt="Saim Saudagar" className="h-10 w-auto dark:hidden" />
               <span className="hidden sm:block text-sm font-semibold text-foreground">Saim Saudagar</span>
             </Link>
             <Button variant="heroOutline" size="sm" asChild>
@@ -186,9 +189,9 @@ const CaseStudy = () => {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="rounded-xl border border-border overflow-hidden"
                   >
-                    <img 
-                      src={beforeImage} 
-                      alt="OnlyPark Before" 
+                    <img
+                      src={beforeImage}
+                      alt="OnlyPark Before"
                       className="w-full h-auto object-contain"
                     />
                   </motion.div>
@@ -198,9 +201,9 @@ const CaseStudy = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="rounded-xl border border-border overflow-hidden"
                   >
-                    <img 
-                      src={afterImage} 
-                      alt="OnlyPark After" 
+                    <img
+                      src={afterImage}
+                      alt="OnlyPark After"
                       className="w-full h-auto object-contain"
                     />
                   </motion.div>

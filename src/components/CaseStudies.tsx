@@ -44,7 +44,7 @@ const CaseStudies = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       <div className="absolute top-20 left-10 w-[350px] h-[350px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
-      
+
       {/* Subtle dots pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.04)_1px,transparent_1px)] bg-[size:30px_30px]" />
 
@@ -78,12 +78,12 @@ const CaseStudies = () => {
                 className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
               >
                 {/* Project Image */}
-                <div className="relative w-full h-32 md:h-40 mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors">
+                <div className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" ? "h-40 md:h-48" : "h-32 md:h-40"}`}>
                   {study.slug === "onlypark" ? (
-                    <img 
-                      src={onlyParkAfter} 
-                      alt="OnlyPark Dashboard" 
-                      className="w-full h-full object-cover"
+                    <img
+                      src={onlyParkAfter}
+                      alt="OnlyPark Dashboard"
+                      className="w-full h-full object-contain object-top"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

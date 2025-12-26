@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ParticleBackground from "./ParticleBackground";
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-light.svg";
 
 const Hero = () => {
   const scrollToWork = () => {
@@ -16,7 +18,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Particle Background */}
       <ParticleBackground />
-      
+
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-5" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-glow animate-pulse-glow" />
@@ -107,10 +109,10 @@ const Hero = () => {
             >
               {/* Animated gradient orb behind */}
               <div className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full bg-gradient-to-br from-primary/30 via-primary/10 to-transparent blur-3xl animate-pulse-glow" />
-              
+
               {/* Decorative ring */}
               <div className="absolute w-[300px] h-[300px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full border border-primary/20" />
-              
+
               {/* Floating tech badges */}
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
@@ -150,12 +152,13 @@ const Hero = () => {
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-secondary">
                   <div className="text-center">
                     <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                      <span className="text-3xl md:text-4xl font-bold text-gradient">SS</span>
+                      <img src={logoLight} alt="Saim Saudagar" className="h-12 md:h-16 w-auto hidden dark:block" />
+                      <img src={logoDark} alt="Saim Saudagar" className="h-12 md:h-16 w-auto dark:hidden" />
                     </div>
                     <p className="text-xs text-muted-foreground">Your Image</p>
                   </div>
                 </div>
-                
+
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>

@@ -2,6 +2,8 @@ import { InlineWidget } from "react-calendly";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-light.svg";
 
 const Book = () => {
   return (
@@ -11,7 +13,8 @@ const Book = () => {
         <div className="container px-4 md:px-6">
           <nav className="flex items-center justify-between h-20">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-gradient">SS</span>
+              <img src={logoLight} alt="Saim Saudagar" className="h-10 w-auto hidden dark:block" />
+              <img src={logoDark} alt="Saim Saudagar" className="h-10 w-auto dark:hidden" />
               <span className="hidden sm:block text-lg font-semibold text-foreground">Saim Saudagar</span>
             </Link>
             <Button variant="heroOutline" size="default" asChild>
@@ -32,7 +35,7 @@ const Book = () => {
               Book a <span className="text-gradient">Free Consultation</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Let's discuss your technical challenges and explore how the Enterprise Velocity System 
+              Let's discuss your technical challenges and explore how the Enterprise Velocity System
               can accelerate your growth.
             </p>
           </div>
