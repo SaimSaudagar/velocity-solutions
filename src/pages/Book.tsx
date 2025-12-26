@@ -43,7 +43,7 @@ const Book = () => {
           {/* Calendly Widget */}
           <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-border bg-card">
             <InlineWidget
-              url="https://calendly.com/saimsaudagar/consultation"
+              url="https://calendly.com/saudagarsaim/30min"
               styles={{
                 height: '700px',
                 width: '100%',
