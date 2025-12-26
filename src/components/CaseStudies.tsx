@@ -1,7 +1,8 @@
 import { ArrowUpRight, Quote, ImageIcon, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import onlyParkAfter from "@/assets/onlypark/after.png";
+import onlyPark2 from "@/assets/onlypark/2.png";
+import tpc2 from "@/assets/tpc/2.png";
 
 const caseStudies = [
   {
@@ -78,11 +79,17 @@ const CaseStudies = () => {
                 className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
               >
                 {/* Project Image */}
-                <div className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" ? "h-40 md:h-48" : "h-32 md:h-40"}`}>
+                <div className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" || study.slug === "pip-collective" ? "h-40 md:h-48" : "h-32 md:h-40"}`}>
                   {study.slug === "onlypark" ? (
                     <img
-                      src={onlyParkAfter}
+                      src={onlyPark2}
                       alt="OnlyPark Dashboard"
+                      className="w-full h-full object-contain object-top"
+                    />
+                  ) : study.slug === "pip-collective" ? (
+                    <img
+                      src={tpc2}
+                      alt="The Pip Collective"
                       className="w-full h-full object-contain object-top"
                     />
                   ) : (

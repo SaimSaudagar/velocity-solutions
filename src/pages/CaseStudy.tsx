@@ -2,8 +2,10 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Quote, Check, ImageIcon, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import beforeImage from "@/assets/onlypark/before.png";
-import afterImage from "@/assets/onlypark/after.png";
+import onlyPark1 from "@/assets/onlypark/1.png";
+import onlyPark2 from "@/assets/onlypark/2.png";
+import tpc1 from "@/assets/tpc/1.png";
+import tpc2 from "@/assets/tpc/2.png";
 import logoLight from "@/assets/logo-light.svg";
 import logoDark from "@/assets/logo-light.svg";
 
@@ -190,8 +192,8 @@ const CaseStudy = () => {
                     className="rounded-xl border border-border overflow-hidden"
                   >
                     <img
-                      src={beforeImage}
-                      alt="OnlyPark Before"
+                      src={onlyPark1}
+                      alt="OnlyPark"
                       className="w-full h-auto object-contain"
                     />
                   </motion.div>
@@ -202,8 +204,35 @@ const CaseStudy = () => {
                     className="rounded-xl border border-border overflow-hidden"
                   >
                     <img
-                      src={afterImage}
-                      alt="OnlyPark After"
+                      src={onlyPark2}
+                      alt="OnlyPark"
+                      className="w-full h-auto object-contain"
+                    />
+                  </motion.div>
+                </>
+              ) : slug === "pip-collective" ? (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="rounded-xl border border-border overflow-hidden"
+                  >
+                    <img
+                      src={tpc1}
+                      alt="The Pip Collective"
+                      className="w-full h-auto object-contain"
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="rounded-xl border border-border overflow-hidden"
+                  >
+                    <img
+                      src={tpc2}
+                      alt="The Pip Collective"
                       className="w-full h-auto object-contain"
                     />
                   </motion.div>
