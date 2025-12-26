@@ -1,6 +1,7 @@
 import { ArrowUpRight, Quote, ImageIcon, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import onlyParkAfter from "@/assets/onlypark/after.png";
 
 const caseStudies = [
   {
@@ -30,7 +31,7 @@ const caseStudies = [
     timeline: "2-4 Weeks",
     result: "Trading Restored",
     stack: ["Backend", "Trading", "Deploy"],
-    testimonial: "Quick turnaround and deep technical understanding.",
+    testimonial: "Highly recommended developer, friendly and very knowledgeable.",
     author: "Platform Owner",
   },
 ];
@@ -76,12 +77,22 @@ const CaseStudies = () => {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
               >
-                {/* Project Image Placeholder */}
-                <div className="relative w-full h-32 md:h-40 mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden flex items-center justify-center group-hover:border-primary/30 transition-colors">
-                  <div className="text-center">
-                    <ImageIcon className="w-8 h-8 text-muted-foreground/50 mx-auto mb-2" />
-                    <p className="text-xs text-muted-foreground/50">Project Screenshot</p>
-                  </div>
+                {/* Project Image */}
+                <div className="relative w-full h-32 md:h-40 mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors">
+                  {study.slug === "onlypark" ? (
+                    <img 
+                      src={onlyParkAfter} 
+                      alt="OnlyPark Dashboard" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="text-center">
+                        <ImageIcon className="w-8 h-8 text-muted-foreground/50 mx-auto mb-2" />
+                        <p className="text-xs text-muted-foreground/50">Project Screenshot</p>
+                      </div>
+                    </div>
+                  )}
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>

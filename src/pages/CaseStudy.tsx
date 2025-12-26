@@ -2,6 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Quote, Check, ImageIcon, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import beforeImage from "@/assets/onlypark/before.png";
+import afterImage from "@/assets/onlypark/after.png";
 
 const caseStudiesData: Record<string, {
   company: string;
@@ -95,7 +97,7 @@ const caseStudiesData: Record<string, {
       "Quick turnaround minimized losses",
     ],
     stack: ["Backend Logic", "Trading Systems", "Cryptocurrency APIs", "Production Deployment"],
-    testimonial: "Quick turnaround and deep technical understanding of complex trading systems.",
+    testimonial: "Highly recommended developer, friendly and very knowledgeable.",
     author: "Crypto Platform Owner",
     metrics: [
       { label: "Time to Fix", value: "2 weeks" },
@@ -171,25 +173,54 @@ const CaseStudy = () => {
         </div>
       </section>
 
-      {/* Project Images Placeholder */}
+      {/* Project Images */}
       <section className="py-8 border-y border-border">
         <div className="container px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="aspect-video rounded-xl bg-secondary/50 border border-border flex items-center justify-center"
-                >
-                  <div className="text-center">
-                    <ImageIcon className="w-12 h-12 text-muted-foreground/30 mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground/50">Project Screenshot {i}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {slug === "onlypark" ? (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="rounded-xl border border-border overflow-hidden"
+                  >
+                    <img 
+                      src={beforeImage} 
+                      alt="OnlyPark Before" 
+                      className="w-full h-auto object-contain"
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="rounded-xl border border-border overflow-hidden"
+                  >
+                    <img 
+                      src={afterImage} 
+                      alt="OnlyPark After" 
+                      className="w-full h-auto object-contain"
+                    />
+                  </motion.div>
+                </>
+              ) : (
+                [1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="aspect-video rounded-xl bg-secondary/50 border border-border flex items-center justify-center"
+                  >
+                    <div className="text-center">
+                      <ImageIcon className="w-12 h-12 text-muted-foreground/30 mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground/50">Project Screenshot {i}</p>
+                    </div>
+                  </motion.div>
+                ))
+              )}
             </div>
           </div>
         </div>
