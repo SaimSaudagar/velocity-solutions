@@ -27,8 +27,15 @@ const problems = [
 const Problem = () => {
   return (
     <section id="problem" className="relative py-20 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+      
+      {/* Floating shapes */}
+      <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-primary/30 animate-float" />
+      <div className="absolute top-40 right-20 w-3 h-3 rounded-full bg-accent/30 animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-20 left-1/4 w-2 h-2 rounded-full bg-primary/20 animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div

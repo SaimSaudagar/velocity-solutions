@@ -6,11 +6,16 @@ import { Link } from "react-router-dom";
 const CTA = () => {
   return (
     <section id="contact" className="relative py-24 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-glow opacity-30" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-glow opacity-40 animate-pulse-glow" />
+      <div className="absolute top-10 left-10 w-[250px] h-[250px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-10 w-[200px] h-[200px] bg-accent/5 rounded-full blur-3xl" />
+      
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.2)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.2)_1px,transparent_1px)] bg-[size:80px_80px]" />
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div

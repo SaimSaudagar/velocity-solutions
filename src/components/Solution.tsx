@@ -48,9 +48,14 @@ const stages = [
 const Solution = () => {
   return (
     <section id="solution" className="relative py-24 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-glow opacity-60 animate-pulse-glow" />
+      <div className="absolute top-20 right-10 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-[250px] h-[250px] bg-primary/8 rounded-full blur-3xl animate-float" />
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">

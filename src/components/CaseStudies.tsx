@@ -38,9 +38,14 @@ const caseStudies = [
 const CaseStudies = () => {
   return (
     <section id="work" className="relative py-20 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-20 left-10 w-[350px] h-[350px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
+      
+      {/* Subtle dots pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.04)_1px,transparent_1px)] bg-[size:30px_30px]" />
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div

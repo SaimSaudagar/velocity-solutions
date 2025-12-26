@@ -62,8 +62,13 @@ const packages = [
 const Services = () => {
   return (
     <section id="services" className="relative py-24 overflow-hidden">
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-3xl" />
+      
+      {/* Subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div
