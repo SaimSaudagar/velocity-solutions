@@ -64,11 +64,16 @@ const Services = () => {
     <section id="services" className="relative py-24 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/8 rounded-full blur-3xl animate-drift" />
+      <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-accent/8 rounded-full blur-3xl animate-drift-reverse" />
       
-      {/* Subtle grid */}
+      {/* Subtle grid with shimmer */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      
+      {/* Floating accent elements */}
+      <div className="absolute top-40 right-20 w-4 h-4 border border-primary/30 rounded-full animate-float" />
+      <div className="absolute bottom-32 left-16 w-3 h-3 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/3 left-10 w-2 h-2 bg-accent/30 rounded-full animate-float" style={{ animationDelay: '1s' }} />
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div
