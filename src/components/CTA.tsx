@@ -19,23 +19,34 @@ const CTA = () => {
 
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ 
+            duration: 0.8,
+            type: "spring",
+            stiffness: 80
+          }}
           className="max-w-4xl mx-auto"
         >
-          <div className="relative p-12 md:p-16 rounded-3xl bg-gradient-card border border-border overflow-hidden">
+          <motion.div 
+            className="relative p-12 md:p-16 rounded-3xl bg-gradient-card border border-border overflow-hidden"
+            whileHover={{ 
+              boxShadow: "0 25px 50px -12px hsl(var(--primary) / 0.15)",
+              transition: { duration: 0.3 }
+            }}
+          >
             {/* Accent Lines */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary" />
             
             <div className="text-center">
               {/* Icon */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
                 className="inline-flex p-4 rounded-2xl bg-primary/10 mb-8"
               >
                 <Zap className="w-10 h-10 text-primary" />
@@ -43,10 +54,10 @@ const CTA = () => {
 
               {/* Headline */}
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-3xl md:text-5xl font-bold mb-6"
               >
                 Ready to Scale Without
@@ -74,18 +85,22 @@ const CTA = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Button variant="hero" size="xl" asChild>
-                  <Link to="/book">
-                    <Calendar className="w-5 h-5" />
-                    Book Free Consultation
-                  </Link>
-                </Button>
-                <Button variant="heroOutline" size="xl" asChild>
-                  <a href="mailto:contact@saimsaudagar.com?subject=Architecture Audit Request">
-                    Get Architecture Audit
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                  <Button variant="hero" size="xl" asChild>
+                    <Link to="/book">
+                      <Calendar className="w-5 h-5" />
+                      Book Free Consultation
+                    </Link>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                  <Button variant="heroOutline" size="xl" asChild>
+                    <a href="mailto:contact@saimsaudagar.com?subject=Architecture Audit Request">
+                      Get Architecture Audit
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  </Button>
+                </motion.div>
               </motion.div>
 
               {/* Trust Note */}
@@ -99,7 +114,7 @@ const CTA = () => {
                 No commitment required. 15-minute call to discuss your technical challenges.
               </motion.p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

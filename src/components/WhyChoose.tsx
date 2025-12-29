@@ -69,18 +69,32 @@ const WhyChoose = () => {
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-4 rounded-xl bg-card/50 border border-border hover:border-primary/30 transition-all duration-300"
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ 
+                y: -5, 
+                scale: 1.02,
+                transition: { duration: 0.2 } 
+              }}
+              className="group p-4 rounded-xl bg-card/50 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
             >
               <div className="mb-3">
-                <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <motion.div 
+                  className="inline-flex p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <reason.icon className="w-5 h-5" />
-                </div>
+                </motion.div>
               </div>
-              <h3 className="text-sm font-semibold mb-1">{reason.title}</h3>
+              <h3 className="text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{reason.title}</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">{reason.description}</p>
             </motion.div>
           ))}

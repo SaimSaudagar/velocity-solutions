@@ -72,14 +72,28 @@ const CaseStudies = () => {
           {caseStudies.map((study, index) => (
             <Link key={study.company} to={`/case-study/${study.slug}`}>
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 h-full cursor-pointer"
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ 
+                  y: -10, 
+                  scale: 1.02,
+                  transition: { duration: 0.3 } 
+                }}
+                className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 h-full cursor-pointer"
               >
                 {/* Project Image */}
-                <div className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" || study.slug === "pip-collective" ? "h-40 md:h-48" : "h-32 md:h-40"}`}>
+                <motion.div 
+                  className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" || study.slug === "pip-collective" ? "h-40 md:h-48" : "h-32 md:h-40"}`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {study.slug === "onlypark" ? (
                     <img
                       src={onlyPark2}
@@ -101,8 +115,8 @@ const CaseStudies = () => {
                     </div>
                   )}
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
 
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
@@ -118,21 +132,31 @@ const CaseStudies = () => {
                 </div>
 
                 {/* Result Badge */}
-                <div className="px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 mb-4">
+                <motion.div 
+                  className="px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 mb-4"
+                  whileHover={{ scale: 1.02 }}
+                >
                   <p className="text-sm font-medium text-primary">{study.result}</p>
-                </div>
+                </motion.div>
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {study.stack.map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded">
+                  {study.stack.map((tech, techIndex) => (
+                    <motion.span 
+                      key={tech} 
+                      className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 + techIndex * 0.05 }}
+                    >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
                 {/* Client Testimonial with Avatar Placeholder */}
-                <div className="p-3 rounded-lg bg-secondary/30 border border-border mt-auto">
+                <div className="p-3 rounded-lg bg-secondary/30 border border-border mt-auto group-hover:border-primary/20 transition-colors">
                   <div className="flex items-start gap-3">
                     {/* Client Image Placeholder */}
                     <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center flex-shrink-0">
@@ -147,10 +171,13 @@ const CaseStudies = () => {
                 </div>
 
                 {/* View More */}
-                <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">View Details</span>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                </div>
+                <motion.div 
+                  className="mt-4 pt-3 border-t border-border flex items-center justify-between"
+                  whileHover={{ x: 5 }}
+                >
+                  <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">View Details</span>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </motion.div>
               </motion.div>
             </Link>
           ))}
