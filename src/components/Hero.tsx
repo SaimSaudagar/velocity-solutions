@@ -109,14 +109,14 @@ const Hero = () => {
             >
               {/* Outer glow ring */}
               <div className="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full bg-gradient-to-br from-primary/20 via-transparent to-accent/10 blur-2xl animate-pulse-slow" />
-              
+
               {/* Animated rotating border */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full border border-dashed border-primary/20"
               />
-              
+
               {/* Secondary rotating ring */}
               <motion.div
                 animate={{ rotate: -360 }}
@@ -163,15 +163,15 @@ const Hero = () => {
                 className="relative w-[220px] h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full overflow-hidden cursor-pointer group"
               >
                 {/* Gradient border effect */}
-                <div className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-br from-primary via-primary/50 to-accent">
+                <div className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-br from-primary via-primary/50 to-transparent">
                   <div className="w-full h-full rounded-full bg-background" />
                 </div>
-                
+
                 {/* Inner content area */}
                 <div className="absolute inset-[3px] rounded-full overflow-hidden bg-gradient-to-br from-card via-secondary to-card">
                   {/* Animated gradient overlay */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       background: [
                         "radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.15), transparent 60%)",
                         "radial-gradient(circle at 70% 70%, hsl(var(--primary) / 0.15), transparent 60%)",
@@ -181,7 +181,7 @@ const Hero = () => {
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute inset-0"
                   />
-                  
+
                   {/* Content placeholder */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
@@ -196,16 +196,16 @@ const Hero = () => {
                       <p className="text-xs text-muted-foreground font-medium">Your Image Here</p>
                     </div>
                   </div>
-                  
+
                   {/* Shine effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                
+
                 {/* Decorative corner accents */}
                 <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/40 rounded-tl-lg" />
                 <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/40 rounded-br-lg" />
               </motion.div>
-              
+
               {/* Status indicator */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}

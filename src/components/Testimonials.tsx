@@ -118,7 +118,7 @@ const Testimonials = () => {
                     </p>
                     
                     <div className="flex items-center gap-4 mt-auto">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground font-semibold">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-transparent flex items-center justify-center text-primary-foreground font-semibold">
                         {testimonial.avatar}
                       </div>
                       <div className="flex-1">
