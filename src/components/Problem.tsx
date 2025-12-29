@@ -29,13 +29,15 @@ const Problem = () => {
     <section id="problem" className="relative py-20 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/8 rounded-full blur-3xl animate-drift" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/8 rounded-full blur-3xl animate-drift-reverse" />
       
-      {/* Floating shapes */}
-      <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-primary/30 animate-float" />
-      <div className="absolute top-40 right-20 w-3 h-3 rounded-full bg-accent/30 animate-float" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-20 left-1/4 w-2 h-2 rounded-full bg-primary/20 animate-float" style={{ animationDelay: '2s' }} />
+      {/* Floating shapes with varied animations */}
+      <div className="absolute top-20 left-10 w-3 h-3 border border-accent/40 rotate-45 animate-float" />
+      <div className="absolute top-40 right-20 w-4 h-4 border border-primary/30 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-20 left-1/4 w-2 h-2 bg-primary/30 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-40 right-1/3 w-3 h-3 border border-accent/20 animate-float" style={{ animationDelay: '0.5s' }} />
+      <div className="absolute top-1/2 left-8 w-2 h-2 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
       
       <div className="container relative z-10 px-4 md:px-6">
         <motion.div
