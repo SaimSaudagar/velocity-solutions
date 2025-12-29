@@ -4,6 +4,7 @@ import Problem from "@/components/Problem";
 import InteractiveTimeline from "@/components/InteractiveTimeline";
 import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
+import Testimonials from "@/components/Testimonials";
 import WhyChoose from "@/components/WhyChoose";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -30,6 +31,7 @@ const Index = () => {
         <InteractiveTimeline />
         <Services />
         <CaseStudies />
+        <Testimonials />
         <WhyChoose />
         <CTA />
       </main>
