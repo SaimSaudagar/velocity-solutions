@@ -98,24 +98,39 @@ const Services = () => {
           {packages.map((pkg, index) => (
             <motion.div
               key={pkg.name}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, rotateX: 10 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 80
+              }}
+              whileHover={{ 
+                y: -8, 
+                transition: { duration: 0.3 } 
+              }}
               className={`relative flex flex-col p-8 rounded-2xl border transition-all duration-300 ${
                 pkg.popular
-                  ? "bg-gradient-card border-primary shadow-glow-sm scale-105"
-                  : "bg-card/50 border-border hover:border-primary/30"
+                  ? "bg-gradient-card border-primary shadow-glow-sm lg:scale-105"
+                  : "bg-card/50 border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
               }`}
             >
               {/* Popular Badge */}
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute -top-4 left-1/2 -translate-x-1/2"
+                >
                   <span className="inline-flex items-center gap-1 px-4 py-1 text-sm font-semibold text-primary-foreground bg-gradient-primary rounded-full">
                     <Star className="w-4 h-4 fill-current" />
                     Most Popular
                   </span>
-                </div>
+                </motion.div>
               )}
 
               {/* Header */}
@@ -131,11 +146,18 @@ const Services = () => {
 
               {/* Features */}
               <ul className="space-y-3 mb-8 flex-grow">
-                {pkg.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
+                {pkg.features.map((feature, featureIndex) => (
+                  <motion.li 
+                    key={feature} 
+                    className="flex items-start gap-3 text-sm"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + featureIndex * 0.05 }}
+                  >
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-muted-foreground">{feature}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 

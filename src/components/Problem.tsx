@@ -62,15 +62,25 @@ const Problem = () => {
           {problems.map((problem, index) => (
             <motion.div
               key={problem.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-4 rounded-xl bg-gradient-card border border-border hover:border-accent/30 transition-all duration-300 text-center"
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="group p-4 rounded-xl bg-gradient-card border border-border hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 text-center"
             >
-              <div className="inline-flex p-2 rounded-lg bg-accent/10 text-accent mb-3">
+              <motion.div 
+                className="inline-flex p-2 rounded-lg bg-accent/10 text-accent mb-3"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <problem.icon className="w-5 h-5" />
-              </div>
+              </motion.div>
               <h3 className="text-sm font-semibold mb-1 group-hover:text-primary transition-colors">
                 {problem.title}
               </h3>

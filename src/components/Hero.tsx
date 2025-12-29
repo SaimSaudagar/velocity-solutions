@@ -100,67 +100,123 @@ const Hero = () => {
               </motion.div>
             </div>
 
-            {/* Right Side - Interactive Profile Image Area */}
+            {/* Right Side - Premium Profile Image Area */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative flex items-center justify-center"
             >
-              {/* Animated gradient orb behind */}
-              <div className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full bg-gradient-to-br from-primary/30 via-primary/10 to-transparent blur-3xl animate-pulse-glow" />
-
-              {/* Decorative ring */}
-              <div className="absolute w-[300px] h-[300px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] rounded-full border border-primary/20" />
-
-              {/* Floating tech badges */}
+              {/* Outer glow ring */}
+              <div className="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full bg-gradient-to-br from-primary/20 via-transparent to-accent/10 blur-2xl animate-pulse-slow" />
+              
+              {/* Animated rotating border */}
               <motion.div
-                animate={{ y: [-10, 10, -10] }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full border border-dashed border-primary/20"
+              />
+              
+              {/* Secondary rotating ring */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute w-[300px] h-[300px] md:w-[390px] md:h-[390px] lg:w-[430px] lg:h-[430px] rounded-full border border-primary/10"
+                style={{
+                  background: "conic-gradient(from 0deg, transparent, hsl(var(--primary) / 0.1), transparent, hsl(var(--primary) / 0.05), transparent)"
+                }}
+              />
+
+              {/* Floating tech badges with enhanced styling */}
+              <motion.div
+                animate={{ y: [-10, 10, -10], x: [-5, 5, -5] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-2 right-8 md:right-4 px-3 py-1.5 rounded-lg bg-card/80 backdrop-blur border border-border text-xs font-medium text-primary"
+                className="absolute -top-4 right-4 md:right-0 px-4 py-2 rounded-xl bg-card/90 backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10"
               >
-                Spring Boot
+                <span className="text-xs font-semibold text-primary">Spring Boot</span>
               </motion.div>
               <motion.div
-                animate={{ y: [10, -10, 10] }}
+                animate={{ y: [10, -10, 10], x: [5, -5, 5] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-12 -left-4 md:left-0 px-3 py-1.5 rounded-lg bg-card/80 backdrop-blur border border-border text-xs font-medium text-primary"
+                className="absolute bottom-16 -left-8 md:-left-4 px-4 py-2 rounded-xl bg-card/90 backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10"
               >
-                Flutter
+                <span className="text-xs font-semibold text-primary">Flutter</span>
               </motion.div>
               <motion.div
-                animate={{ y: [-5, 15, -5] }}
+                animate={{ y: [-5, 15, -5], x: [-3, 3, -3] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-20 -left-4 md:left-4 px-3 py-1.5 rounded-lg bg-card/80 backdrop-blur border border-border text-xs font-medium text-primary"
+                className="absolute top-24 -left-8 md:-left-4 px-4 py-2 rounded-xl bg-card/90 backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10"
               >
-                Next.js
+                <span className="text-xs font-semibold text-primary">Next.js</span>
               </motion.div>
               <motion.div
-                animate={{ y: [8, -12, 8] }}
+                animate={{ y: [8, -12, 8], x: [4, -4, 4] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-4 right-4 md:right-12 px-3 py-1.5 rounded-lg bg-card/80 backdrop-blur border border-border text-xs font-medium text-primary"
+                className="absolute bottom-8 right-0 md:right-8 px-4 py-2 rounded-xl bg-card/90 backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10"
               >
-                Angular
+                <span className="text-xs font-semibold text-primary">Angular</span>
               </motion.div>
 
-              {/* Main profile image container */}
+              {/* Main profile container with hexagonal-inspired design */}
               <motion.div
-                whileHover={{ scale: 1.03 }}
-                className="relative w-[240px] h-[240px] md:w-[300px] md:h-[300px] lg:w-[340px] lg:h-[340px] rounded-full overflow-hidden border-2 border-primary/40 bg-gradient-to-br from-primary/20 to-card shadow-2xl shadow-primary/20 cursor-pointer group"
+                whileHover={{ scale: 1.02 }}
+                className="relative w-[220px] h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full overflow-hidden cursor-pointer group"
               >
-                {/* Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-secondary">
-                  <div className="text-center">
-                    <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                      <img src={logoLight} alt="Saim Saudagar" className="h-12 md:h-16 w-auto hidden dark:block" />
-                      <img src={logoDark} alt="Saim Saudagar" className="h-12 md:h-16 w-auto dark:hidden" />
-                    </div>
-                    <p className="text-xs text-muted-foreground">Your Image</p>
-                  </div>
+                {/* Gradient border effect */}
+                <div className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-br from-primary via-primary/50 to-accent">
+                  <div className="w-full h-full rounded-full bg-background" />
                 </div>
-
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Inner content area */}
+                <div className="absolute inset-[3px] rounded-full overflow-hidden bg-gradient-to-br from-card via-secondary to-card">
+                  {/* Animated gradient overlay */}
+                  <motion.div
+                    animate={{ 
+                      background: [
+                        "radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.15), transparent 60%)",
+                        "radial-gradient(circle at 70% 70%, hsl(var(--primary) / 0.15), transparent 60%)",
+                        "radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.15), transparent 60%)"
+                      ]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  />
+                  
+                  {/* Content placeholder */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <motion.div
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30"
+                      >
+                        <img src={logoLight} alt="Saim Saudagar" className="h-10 md:h-12 w-auto hidden dark:block" />
+                        <img src={logoDark} alt="Saim Saudagar" className="h-10 md:h-12 w-auto dark:hidden" />
+                      </motion.div>
+                      <p className="text-xs text-muted-foreground font-medium">Your Image Here</p>
+                    </div>
+                  </div>
+                  
+                  {/* Shine effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                
+                {/* Decorative corner accents */}
+                <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/40 rounded-tl-lg" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/40 rounded-br-lg" />
+              </motion.div>
+              
+              {/* Status indicator */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.4 }}
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-card/90 backdrop-blur-md border border-primary/30 shadow-lg"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs font-medium text-foreground">Available for Projects</span>
+                </div>
               </motion.div>
             </motion.div>
           </div>
