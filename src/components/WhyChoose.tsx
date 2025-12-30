@@ -36,36 +36,36 @@ const reasons = [
 
 const WhyChoose = () => {
   return (
-    <section id="why" className="relative py-20 overflow-hidden">
+    <section id="why" className="relative py-16 sm:py-20 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-1/4 left-0 w-[150px] sm:w-[225px] md:w-[300px] h-[150px] sm:h-[225px] md:h-[300px] bg-accent/5 rounded-full blur-3xl" />
       
-      {/* Floating elements */}
-      <div className="absolute top-32 left-20 w-1.5 h-1.5 rounded-full bg-primary/40 animate-float" />
-      <div className="absolute bottom-40 right-32 w-2 h-2 rounded-full bg-primary/30 animate-float" style={{ animationDelay: '1.5s' }} />
+      {/* Floating elements - hidden on mobile */}
+      <div className="hidden sm:block absolute top-32 left-20 w-1.5 h-1.5 rounded-full bg-primary/40 animate-float" />
+      <div className="hidden sm:block absolute bottom-40 right-32 w-2 h-2 rounded-full bg-primary/30 animate-float" style={{ animationDelay: '1.5s' }} />
 
-      <div className="container relative z-10 px-4 md:px-6">
+      <div className="container relative z-10 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-12"
+          className="max-w-4xl mx-auto text-center mb-8 sm:mb-12"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
+          <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-3 sm:mb-4">
             Why Choose Saim
           </span>
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-4">
             Enterprise Quality. <span className="text-gradient">Freelancer Speed.</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-2">
             Corporate-grade engineering without the corporate timelines.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 max-w-5xl mx-auto">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
@@ -83,19 +83,19 @@ const WhyChoose = () => {
                 scale: 1.02,
                 transition: { duration: 0.2 } 
               }}
-              className="group p-4 rounded-xl bg-card/50 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+              className="group p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/50 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
             >
-              <div className="mb-3">
+              <div className="mb-2 sm:mb-3">
                 <motion.div 
-                  className="inline-flex p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                  className="inline-flex p-1.5 sm:p-2 rounded-md sm:rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <reason.icon className="w-5 h-5" />
+                  <reason.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.div>
               </div>
-              <h3 className="text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{reason.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{reason.description}</p>
+              <h3 className="text-xs sm:text-sm font-semibold mb-1 group-hover:text-primary transition-colors">{reason.title}</h3>
+              <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">{reason.description}</p>
             </motion.div>
           ))}
         </div>

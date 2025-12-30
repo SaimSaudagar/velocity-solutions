@@ -61,40 +61,40 @@ const packages = [
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-24 overflow-hidden">
+    <section id="services" className="relative py-16 sm:py-24 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/8 rounded-full blur-3xl animate-drift" />
-      <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-accent/8 rounded-full blur-3xl animate-drift-reverse" />
+      <div className="absolute top-0 left-1/4 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-primary/8 rounded-full blur-3xl animate-drift" />
+      <div className="absolute bottom-0 right-1/4 w-[175px] sm:w-[275px] md:w-[350px] h-[175px] sm:h-[275px] md:h-[350px] bg-accent/8 rounded-full blur-3xl animate-drift-reverse" />
       
       {/* Subtle grid with shimmer */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:60px_60px]" />
       
-      {/* Floating accent elements */}
-      <div className="absolute top-40 right-20 w-4 h-4 border border-primary/30 rounded-full animate-float" />
-      <div className="absolute bottom-32 left-16 w-3 h-3 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/3 left-10 w-2 h-2 bg-accent/30 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+      {/* Floating accent elements - hidden on mobile */}
+      <div className="hidden sm:block absolute top-40 right-20 w-4 h-4 border border-primary/30 rounded-full animate-float" />
+      <div className="hidden sm:block absolute bottom-32 left-16 w-3 h-3 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      <div className="hidden sm:block absolute top-1/3 left-10 w-2 h-2 bg-accent/30 rounded-full animate-float" style={{ animationDelay: '1s' }} />
 
-      <div className="container relative z-10 px-4 md:px-6">
+      <div className="container relative z-10 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-10 sm:mb-16"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
+          <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-3 sm:mb-4">
             Service Packages
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
             Choose Your <span className="text-gradient">Velocity</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
             All packages follow the same S.P.S. methodology. The difference is scope, complexity, and support level.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {packages.map((pkg, index) => (
             <motion.div
               key={pkg.name}
@@ -111,9 +111,9 @@ const Services = () => {
                 y: -8, 
                 transition: { duration: 0.3 } 
               }}
-              className={`relative flex flex-col p-8 rounded-2xl border transition-all duration-300 ${
+              className={`relative flex flex-col p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border transition-all duration-300 ${
                 pkg.popular
-                  ? "bg-gradient-card border-primary shadow-glow-sm lg:scale-105"
+                  ? "bg-gradient-card border-primary shadow-glow-sm md:scale-100 lg:scale-105"
                   : "bg-card/50 border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
               }`}
             >
@@ -124,51 +124,51 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 }}
-                  className="absolute -top-4 left-1/2 -translate-x-1/2"
+                  className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2"
                 >
-                  <span className="inline-flex items-center gap-1 px-4 py-1 text-sm font-semibold text-primary-foreground bg-gradient-primary rounded-full">
-                    <Star className="w-4 h-4 fill-current" />
+                  <span className="inline-flex items-center gap-1 px-3 py-0.5 sm:px-4 sm:py-1 text-xs sm:text-sm font-semibold text-primary-foreground bg-gradient-primary rounded-full">
+                    <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
                     Most Popular
                   </span>
                 </motion.div>
               )}
 
               {/* Header */}
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                <div className="flex items-center gap-2 text-sm text-primary font-medium mb-2">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2">{pkg.name}</h3>
+                <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm text-primary font-medium mb-1 sm:mb-2">
                   <span>{pkg.timeline}</span>
                   <span className="w-1 h-1 rounded-full bg-primary" />
                   <span>{pkg.stages}</span>
                 </div>
-                <p className="text-muted-foreground text-sm">{pkg.description}</p>
+                <p className="text-muted-foreground text-xs sm:text-sm">{pkg.description}</p>
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-8 flex-grow">
+              <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                 {pkg.features.map((feature, featureIndex) => (
                   <motion.li 
                     key={feature} 
-                    className="flex items-start gap-3 text-sm"
+                    className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + featureIndex * 0.05 }}
                   >
-                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-muted-foreground">{feature}</span>
                   </motion.li>
                 ))}
               </ul>
 
               {/* Ideal For */}
-              <div className="p-4 rounded-xl bg-secondary/50 border border-border mb-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Ideal For</p>
-                <p className="text-sm text-foreground">{pkg.ideal}</p>
+              <div className="p-3 sm:p-4 rounded-lg sm:rounded-xl bg-secondary/50 border border-border mb-4 sm:mb-6">
+                <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1">Ideal For</p>
+                <p className="text-xs sm:text-sm text-foreground">{pkg.ideal}</p>
               </div>
 
               {/* CTA */}
-              <Button variant={pkg.popular ? "hero" : "heroOutline"} size="lg" className="w-full" asChild>
+              <Button variant={pkg.popular ? "hero" : "heroOutline"} size="lg" className="w-full text-sm sm:text-base" asChild>
                 <Link to="/book">Get Started</Link>
               </Button>
             </motion.div>
