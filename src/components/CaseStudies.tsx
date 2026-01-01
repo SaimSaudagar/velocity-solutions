@@ -39,12 +39,12 @@ const caseStudies = [
 
 const CaseStudies = () => {
   return (
-    <section id="work" className="relative py-20 overflow-hidden">
+    <section id="work" className="relative py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute top-20 left-10 w-[350px] h-[350px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-[200px] sm:w-[350px] h-[200px] sm:h-[350px] bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-10 right-10 w-[150px] sm:w-[300px] h-[150px] sm:h-[300px] bg-accent/5 rounded-full blur-3xl" />
 
       {/* Subtle dots pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.04)_1px,transparent_1px)] bg-[size:30px_30px]" />
@@ -53,44 +53,44 @@ const CaseStudies = () => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-12"
+          className="max-w-4xl mx-auto text-center mb-8 sm:mb-12"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-4">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full mb-3 sm:mb-4">
             Case Studies
           </span>
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-4">
             Production <span className="text-gradient">Results</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto px-4">
             Real projects. Real outcomes. Systems running in production today.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {caseStudies.map((study, index) => (
             <Link key={study.company} to={`/case-study/${study.slug}`}>
               <motion.div
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "-30px" }}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.15,
+                  duration: 0.5, 
+                  delay: index * 0.1,
                   type: "spring",
                   stiffness: 100
                 }}
                 whileHover={{ 
-                  y: -10, 
+                  y: -8, 
                   scale: 1.02,
                   transition: { duration: 0.3 } 
                 }}
-                className="group flex flex-col p-6 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 h-full cursor-pointer"
+                className="group flex flex-col p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-card border border-border hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 h-full cursor-pointer"
               >
                 {/* Project Image */}
                 <motion.div 
-                  className={`relative w-full mb-4 rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" || study.slug === "pip-collective" ? "h-40 md:h-48" : "h-32 md:h-40"}`}
+                  className={`relative w-full mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-secondary/50 border border-border overflow-hidden group-hover:border-primary/30 transition-colors ${study.slug === "onlypark" || study.slug === "pip-collective" ? "h-32 sm:h-40 md:h-48" : "h-28 sm:h-32 md:h-40"}`}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -119,36 +119,36 @@ const CaseStudies = () => {
                 </motion.div>
 
                 {/* Header */}
-                <div className="flex items-start justify-between mb-3">
+                <div className="flex items-start justify-between mb-2 sm:mb-3">
                   <div>
-                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors">
                       {study.company}
                     </h3>
-                    <p className="text-xs text-primary">{study.type}</p>
+                    <p className="text-[10px] sm:text-xs text-primary">{study.type}</p>
                   </div>
-                  <span className="px-2 py-1 text-xs text-muted-foreground bg-secondary rounded">
+                  <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs text-muted-foreground bg-secondary rounded">
                     {study.timeline}
                   </span>
                 </div>
 
                 {/* Result Badge */}
                 <motion.div 
-                  className="px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 mb-4"
+                  className="px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-primary/10 border border-primary/20 mb-3 sm:mb-4"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <p className="text-sm font-medium text-primary">{study.result}</p>
+                  <p className="text-xs sm:text-sm font-medium text-primary">{study.result}</p>
                 </motion.div>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-4">
                   {study.stack.map((tech, techIndex) => (
                     <motion.span 
                       key={tech} 
-                      className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded"
+                      className="px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs text-muted-foreground bg-secondary rounded"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.4 + techIndex * 0.05 }}
+                      transition={{ delay: 0.3 + techIndex * 0.05 }}
                     >
                       {tech}
                     </motion.span>
@@ -156,27 +156,27 @@ const CaseStudies = () => {
                 </div>
 
                 {/* Client Testimonial with Avatar Placeholder */}
-                <div className="p-3 rounded-lg bg-secondary/30 border border-border mt-auto group-hover:border-primary/20 transition-colors">
-                  <div className="flex items-start gap-3">
+                <div className="p-2 sm:p-3 rounded-lg bg-secondary/30 border border-border mt-auto group-hover:border-primary/20 transition-colors">
+                  <div className="flex items-start gap-2 sm:gap-3">
                     {/* Client Image Placeholder */}
-                    <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-muted-foreground/50" />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-secondary border border-border flex items-center justify-center flex-shrink-0">
+                      <User className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/50" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <Quote className="w-3 h-3 text-primary mb-1" />
-                      <p className="text-xs text-foreground/80 italic line-clamp-2">{study.testimonial}</p>
-                      <p className="text-xs text-muted-foreground mt-1">— {study.author}</p>
+                      <Quote className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary mb-1" />
+                      <p className="text-[10px] sm:text-xs text-foreground/80 italic line-clamp-2">{study.testimonial}</p>
+                      <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">— {study.author}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* View More */}
                 <motion.div 
-                  className="mt-4 pt-3 border-t border-border flex items-center justify-between"
+                  className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-border flex items-center justify-between"
                   whileHover={{ x: 5 }}
                 >
-                  <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">View Details</span>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                  <span className="text-[10px] sm:text-xs text-muted-foreground group-hover:text-foreground transition-colors">View Details</span>
+                  <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </motion.div>
               </motion.div>
             </Link>
