@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
+import PageLoader from "./PageLoader";
 
 interface PageTransitionProps {
   children: ReactNode;
@@ -30,16 +31,31 @@ const pageTransition = {
 };
 
 const PageTransition = ({ children }: PageTransitionProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate brief loading for smooth transition feel
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
-      {children}
-    </motion.div>
+    <>
+      {isLoading && <PageLoader />}
+      <motion.div
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageVariants}
+        transition={pageTransition}
+        onAnimationComplete={() => setIsLoading(false)}
+      >
+        {children}
+      </motion.div>
+    </>
   );
 };
 
