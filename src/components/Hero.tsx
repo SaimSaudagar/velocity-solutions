@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ParticleBackground from "./ParticleBackground";
 import logoLight from "@/assets/logo-light.svg";
 import logoDark from "@/assets/logo-light.svg";
+import profilePicture from "@/assets/profile-picture.png";
 
 const Hero = () => {
   const scrollToWork = () => {
@@ -182,19 +183,13 @@ const Hero = () => {
                     className="absolute inset-0"
                   />
 
-                  {/* Content placeholder */}
+                  {/* Profile image */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <motion.div
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-2 sm:mb-3 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30"
-                      >
-                        <img src={logoLight} alt="Saim Saudagar" className="h-6 sm:h-8 md:h-10 w-auto hidden dark:block" />
-                        <img src={logoDark} alt="Saim Saudagar" className="h-6 sm:h-8 md:h-10 w-auto dark:hidden" />
-                      </motion.div>
-                      <p className="text-[10px] sm:text-xs text-muted-foreground font-medium">Your Image Here</p>
-                    </div>
+                    <img
+                      src={profilePicture}
+                      alt="Saim Saudagar"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
 
                   {/* Shine effect on hover */}
