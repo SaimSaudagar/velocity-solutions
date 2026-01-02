@@ -6,6 +6,10 @@ import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
 import WhyChoose from "@/components/WhyChoose";
+import TechStack from "@/components/TechStack";
+import Stats from "@/components/Stats";
+import Process from "@/components/Process";
+import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import CursorTracker from "@/components/CursorTracker";
@@ -30,9 +34,13 @@ const Index = () => {
         <Problem />
         <InteractiveTimeline />
         <Services />
+        <TechStack />
+        <Stats />
         <CaseStudies />
         <Testimonials />
+        <Process />
         <WhyChoose />
+        <FAQ />
         <CTA />
       </main>
       <Footer />
