@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import CursorTracker from "@/components/CursorTracker";
 import Blog from "@/components/Blog";
 import PartnersCarousel from "@/components/PartnersCarousel";
+import Newsletter from "@/components/Newsletter";
 
 const Index = () => {
   return (
@@ -44,6 +45,7 @@ const Index = () => {
         <Process />
         <WhyChoose />
         <Blog />
+        <Newsletter />
         <FAQ />
         <CTA />
       </main>
