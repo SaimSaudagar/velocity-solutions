@@ -13,6 +13,8 @@ import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import CursorTracker from "@/components/CursorTracker";
+import Blog from "@/components/Blog";
+import PartnersCarousel from "@/components/PartnersCarousel";
 
 const Index = () => {
   return (
@@ -31,6 +33,7 @@ const Index = () => {
       <Header />
       <main className="relative z-10">
         <Hero />
+        <PartnersCarousel />
         <Problem />
         <InteractiveTimeline />
         <Services />
@@ -40,6 +43,7 @@ const Index = () => {
         <Testimonials />
         <Process />
         <WhyChoose />
+        <Blog />
         <FAQ />
         <CTA />
       </main>
