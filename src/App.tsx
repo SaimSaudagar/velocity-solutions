@@ -7,6 +7,8 @@ import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import Book from "./pages/Book";
 import CaseStudy from "./pages/CaseStudy";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 
@@ -21,6 +23,8 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/book" element={<PageTransition><Book /></PageTransition>} />
         <Route path="/case-study/:slug" element={<PageTransition><CaseStudy /></PageTransition>} />
+        <Route path="/blog" element={<PageTransition><BlogList /></PageTransition>} />
+        <Route path="/blog/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
