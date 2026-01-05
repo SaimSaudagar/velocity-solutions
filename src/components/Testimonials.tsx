@@ -7,6 +7,8 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const testimonials = [
   {
@@ -60,6 +62,10 @@ const StarRating = ({ rating }: { rating: number }) => (
 );
 
 const Testimonials = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
+
   return (
     <section id="testimonials" className="py-16 sm:py-24 relative overflow-hidden">
       {/* Background Effects */}
@@ -104,7 +110,9 @@ const Testimonials = () => {
             opts={{
               align: "start",
               loop: true,
+              dragFree: true,
             }}
+            plugins={[plugin.current]}
             className="w-full"
           >
             <CarouselContent className="-ml-2 sm:-ml-4">
