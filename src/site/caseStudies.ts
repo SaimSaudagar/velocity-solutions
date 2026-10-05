@@ -34,6 +34,14 @@ export type ProjectCard = {
 
 export const PROJECT_CARDS: ProjectCard[] = [
   {
+    slug: "dawlati",
+    category: "Job portal · UAE",
+    name: "Dawlati",
+    summary: "Bilingual (English & Arabic) job platform for the UAE, with a backend powering 100,000+ listings and applications.",
+    stack: ["Next.js", "NestJS", "REST APIs"],
+    mark: "Da",
+  },
+  {
     slug: "scopeology",
     category: "Medical EdTech · Saudi Arabia",
     name: "Scopeology",
@@ -181,6 +189,24 @@ export const CASE_DETAILS: Record<string, CaseDetail> = {
     ],
     quote: "Highly recommended developer, friendly and very knowledgeable.",
     who: "Project stakeholder",
+    images: [],
+  },
+  dawlati: {
+    name: "Dawlati",
+    type: "Full-stack job portal · UAE",
+    timeline: "Web platform",
+    overview:
+      "Dawlati is a career platform for the UAE that connects candidates and employers. I built the web platform in React/Next.js and designed the NestJS backend that powers job listings, candidate applications and employer profiles at scale.",
+    highlights: [
+      "Scalable NestJS backend supporting 100,000+ listings and applications",
+      "Web platform built with React/Next.js",
+      "Job listings, user profiles and employer–candidate features",
+      "Job matching, applications and real-time updates via backend APIs",
+      "Secure REST APIs and authentication — 35% fewer auth-related incidents",
+      "English & Arabic support with localization for UAE users",
+      "Job search, application flow, notifications and user tracking",
+    ],
+    stack: ["Next.js", "React", "NestJS", "REST APIs", "Authentication", "i18n (EN/AR)"],
     images: [],
   },
   scopeology: {

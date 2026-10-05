@@ -463,7 +463,6 @@ function Terminal() {
 const SHIPPED = [
   ["Autoversal", "Automotive marketplace — 500k+ listings, 50% faster search", "Next.js · Spring Boot · PostgreSQL", "live"],
   ["Core for Contractors", "Contractor management — 70% less manual tracking", "Next.js · PostgreSQL · Twilio", "live"],
-  ["Dawlati", "Jobs platform backend for 100k+ listings & applications", "NestJS · REST", "shipped"],
   ["Onepay Wallet", "Digital wallet microservices, 50k+ transactions", "Spring Boot · NestJS · Angular", "shipped"],
   ["Propfy", "Real-estate listings app on iOS & Android", "Flutter · Firebase", "shipped"],
 ];

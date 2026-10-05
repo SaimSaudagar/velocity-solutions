@@ -2860,3 +2860,11 @@ body:has(.site) {
   color: var(--accent-text);
   font-weight: 600;
 }
+@media (min-width: 700px) {
+  .pgrid > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .pgrid > div:first-child .pcard__sum {
+    max-width: 34em;
+  }
+}
