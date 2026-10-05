@@ -37,7 +37,6 @@ const App = () => (
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
-      <elevenlabs-convai agent-id="agent_2301kg0rf08wfaerjafp8w1hpznf"></elevenlabs-convai>
     </TooltipProvider>
   </QueryClientProvider>
 );
