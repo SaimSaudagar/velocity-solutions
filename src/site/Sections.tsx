@@ -981,7 +981,7 @@ export function FinalCTA() {
             <span className="dot" /> Next step
           </Reveal>
           <MaskLines
-            className="display h-xl"
+            className="display h-lg"
             lines={[<>Stop losing sleep</>, <>over <em>production</em>.</>]}
           />
           <Reveal className="lede" delay={0.1}>
