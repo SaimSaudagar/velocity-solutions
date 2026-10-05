@@ -24,23 +24,6 @@ import {
   Work,
 } from "./Sections";
 
-const POPUP_KEY = "ss_magnet_seen";
-
-function safeGet(k: string) {
-  try {
-    return sessionStorage.getItem(k);
-  } catch {
-    return null;
-  }
-}
-function safeSet(k: string, v: string) {
-  try {
-    sessionStorage.setItem(k, v);
-  } catch {
-    /* ignore */
-  }
-}
-
 /** Shared page frame: nav, footer, scorecard modal, booking popup, mobile CTA. */
 function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNode; nudge?: boolean }) {
   const [scoreOpen, setScoreOpen] = useState(false);
@@ -54,7 +37,6 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
   }, []);
   const openScorecard = useCallback(() => {
     setNudge(false);
-    safeSet(POPUP_KEY, "1");
     setScoreOpen(true);
   }, []);
 
@@ -95,25 +77,30 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
     document.body.style.overflow = locked ? "hidden" : "";
   }, [scoreOpen]);
 
-  /* Scorecard nudge: once per session, after 9s or 35% down, never over a playing video */
+  /* Scorecard popup (bottom-left): shows on every page load, after 5s or 25% scroll, never over a playing video */
   useEffect(() => {
-    if (!allowNudge || safeGet(POPUP_KEY) || safeGet("ss_lead_captured")) return;
+    if (!allowNudge) return;
     let fired = false;
+    let retry = 0;
     const fire = () => {
       if (fired) return;
-      if ((window as unknown as { __vslPlaying?: boolean }).__vslPlaying) return;
+      if ((window as unknown as { __vslPlaying?: boolean }).__vslPlaying) {
+        window.clearTimeout(retry);
+        retry = window.setTimeout(fire, 20000);
+        return;
+      }
       fired = true;
-      safeSet(POPUP_KEY, "1");
       setNudge(true);
     };
-    const t = window.setTimeout(fire, 9000);
+    const t = window.setTimeout(fire, 5000);
     const onScroll = () => {
       const h = document.documentElement;
-      if (h.scrollTop / (h.scrollHeight - h.clientHeight) > 0.35) fire();
+      if (h.scrollTop / (h.scrollHeight - h.clientHeight) > 0.25) fire();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       clearTimeout(t);
+      clearTimeout(retry);
       window.removeEventListener("scroll", onScroll);
     };
   }, [allowNudge]);

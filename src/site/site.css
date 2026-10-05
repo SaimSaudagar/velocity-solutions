@@ -2351,14 +2351,18 @@ html.lenis body {
   border: 1px solid rgba(14, 165, 160, 0.35);
   color: var(--ink);
   box-shadow: var(--shadow-lg);
-  display: none;
+  display: flex;
   gap: 14px;
   align-items: flex-start;
   font-size: 14px;
 }
-@media (min-width: 900px) {
+/* On phones it sits above the bottom button bar */
+@media (max-width: 899px) {
   .toast-lite {
-    display: flex;
+    left: 12px;
+    right: 12px;
+    bottom: 84px;
+    max-width: none;
   }
 }
 .toast-lite b {
