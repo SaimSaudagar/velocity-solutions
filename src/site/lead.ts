@@ -5,7 +5,7 @@
  * (Formspree, Web3Forms, Make/Zapier webhook, GoHighLevel inbound webhook, your own API).
  * Example:  VITE_LEAD_ENDPOINT=https://formspree.io/f/xxxxxxx
  *
- * Without it, leads are only logged to the console so the flow still works locally.
+ * Without it, leads go to the default Formspree form below.
  */
 export type Lead = {
   name: string;
@@ -21,17 +21,30 @@ export const CALENDLY_URL = "https://calendly.com/saudagarsaim/30min";
 export const VSL_ID = "_1k5fwlWX2Y";
 export const CONTACT_EMAIL = "saudagarsaim@gmail.com";
 
+/** Formspree form that receives scorecard leads. VITE_LEAD_ENDPOINT overrides it if set. */
+const DEFAULT_LEAD_ENDPOINT = "https://formspree.io/f/xkjowllo";
+
 export async function submitLead(lead: Lead): Promise<boolean> {
-  const endpoint = import.meta.env.VITE_LEAD_ENDPOINT as string | undefined;
-  const payload = { ...lead, page: window.location.href, submittedAt: new Date().toISOString() };
+  const endpoint = (import.meta.env.VITE_LEAD_ENDPOINT as string | undefined) || DEFAULT_LEAD_ENDPOINT;
+  // Flat fields so they read cleanly in the Formspree inbox and email notifications
+  const payload: Record<string, string | number> = {
+    _subject: `New scorecard lead: ${lead.name}${lead.score !== undefined ? ` (score ${lead.score}/100)` : ""}`,
+    name: lead.name,
+    email: lead.email,
+    product_url: lead.company || "",
+    score: lead.score ?? "",
+    security: lead.pillars?.Security ?? "",
+    performance: lead.pillars?.Performance ?? "",
+    scalability: lead.pillars?.Scalability ?? "",
+    top_risks: (lead.risks || []).join(" | "),
+    source: lead.source,
+    page: window.location.href,
+    submitted_at: new Date().toISOString(),
+  };
   try {
     sessionStorage.setItem("ss_lead_captured", "1");
   } catch {
     /* storage unavailable */
-  }
-  if (!endpoint) {
-    console.info("[lead] VITE_LEAD_ENDPOINT not set — lead not sent:", payload);
-    return true;
   }
   try {
     const res = await fetch(endpoint, {
