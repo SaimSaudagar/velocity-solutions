@@ -52,56 +52,93 @@ export default function CaseModal({
 
         <header className="cm__head">
           <span className="eyebrow">
-            <span className="dot" /> Case study · {c.timeline}
+            <span className="dot" /> {c.highlights ? "Project" : "Case study"} · {c.timeline}
           </span>
           <h2 className="display cm__title">{c.name}</h2>
           <p className="cm__type">{c.type}</p>
           <p className="cm__overview">{c.overview}</p>
         </header>
 
-        <div className="cm__metrics">
-          {c.metrics.map((m) => (
-            <div key={m.label}>
-              <b>{m.value}</b>
-              <span>{m.label}</span>
-            </div>
-          ))}
-        </div>
+        {c.role && (
+          <p className="cm__type" style={{ marginTop: 10 }}>
+            My role: <b>{c.role}</b>
+          </p>
+        )}
 
-        {c.images[0] && <img className="cm__img" src={c.images[0].src} alt={c.images[0].alt} loading="lazy" />}
+        {c.metrics && c.metrics.length > 0 && (
+          <div className="cm__metrics">
+            {c.metrics.map((m) => (
+              <div key={m.label}>
+                <b>{m.value}</b>
+                <span>{m.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
-        <div className="cm__cols">
-          <section>
-            <h3 className="cm__h warn">The challenge</h3>
+        {c.images[0] && (
+          <img
+            className="cm__img"
+            src={c.images[0].src}
+            alt={c.images[0].alt}
+            loading="lazy"
+          />
+        )}
+
+        {c.highlights && (
+          <section className="cm__built">
+            <h3 className="cm__h">What I built</h3>
             <ul>
-              {c.challenge.map((x) => (
+              {c.highlights.map((x) => (
                 <li key={x}>{x}</li>
               ))}
             </ul>
           </section>
-          <section>
-            <h3 className="cm__h">What I did</h3>
-            <ul>
-              {c.solution.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </section>
-          <section>
-            <h3 className="cm__h good">Results</h3>
-            <ul>
-              {c.results.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        )}
 
-        {c.images[1] && <img className="cm__img" src={c.images[1].src} alt={c.images[1].alt} loading="lazy" />}
+        {c.challenge && c.solution && c.results && (
+          <div className="cm__cols">
+            <section>
+              <h3 className="cm__h warn">The challenge</h3>
+              <ul>
+                {c.challenge.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h3 className="cm__h">What I did</h3>
+              <ul>
+                {c.solution.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h3 className="cm__h good">Results</h3>
+              <ul>
+                {c.results.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        )}
 
-        <blockquote className="cm__quote">
-          “{c.quote}”<cite>— {c.who}</cite>
-        </blockquote>
+        {c.images[1] && (
+          <img
+            className="cm__img"
+            src={c.images[1].src}
+            alt={c.images[1].alt}
+            loading="lazy"
+          />
+        )}
+
+        {c.quote && (
+          <blockquote className="cm__quote">
+            “{c.quote}”<cite>— {c.who}</cite>
+          </blockquote>
+        )}
 
         <div className="cm__stack">
           <span className="eyebrow">Tech stack</span>

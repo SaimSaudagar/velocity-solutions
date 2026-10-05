@@ -4,6 +4,7 @@ import { Arrow, CountUp, EASE, MaskLines, Reveal } from "./motion";
 import Scorecard from "./Scorecard";
 import { useActions } from "./actions";
 import { CONTACT_EMAIL } from "./lead";
+import { PROJECT_CARDS } from "./caseStudies";
 import onlyPark from "@/assets/onlypark/1.png";
 import tpc from "@/assets/tpc/1.png";
 import portrait from "@/assets/profile-picture.png";
@@ -538,9 +539,33 @@ export function Work() {
           </article>
         ))}
 
+        <div className="eyebrow" style={{ margin: "64px 0 20px" }}>
+          More projects
+        </div>
+        <div className="pgrid">
+          {PROJECT_CARDS.map((p, n) => (
+            <Reveal key={p.slug} delay={(n % 3) * 0.06}>
+              <button className="pcard" onClick={() => openCase(p.slug)}>
+                <span className="pcard__mark" aria-hidden="true">
+                  {p.mark}
+                </span>
+                <span className="pcard__cat">{p.category}</span>
+                <span className="pcard__name">{p.name}</span>
+                <span className="pcard__sum">{p.summary}</span>
+                <span className="pcard__foot">
+                  <span className="pcard__stack">{p.stack.join(" · ")}</span>
+                  <span className="pcard__go">
+                    View project <Arrow size={12} />
+                  </span>
+                </span>
+              </button>
+            </Reveal>
+          ))}
+        </div>
+
         <Reveal>
           <div className="eyebrow" style={{ margin: "56px 0 0" }}>
-            More in production
+            Also shipped
           </div>
           <div className="shipped">
             {SHIPPED.map(([n, w, s, st]) => (

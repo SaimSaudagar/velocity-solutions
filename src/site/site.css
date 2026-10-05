@@ -2732,3 +2732,131 @@ body:has(.site) {
   padding-top: 24px;
   border-top: 1px solid var(--line);
 }
+
+/* ==========================================================================
+   More projects grid
+   ========================================================================== */
+.pgrid {
+  display: grid;
+  gap: 14px;
+}
+@media (min-width: 700px) {
+  .pgrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1040px) {
+  .pgrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.pgrid > div {
+  display: flex;
+}
+.pcard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(14, 165, 160, 0.45);
+  box-shadow: var(--shadow-lg);
+}
+.pcard__mark {
+  display: grid;
+  place-items: center;
+  min-width: 46px;
+  height: 46px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+.pcard__cat {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.pcard__name {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.pcard__sum {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.pcard__foot {
+  margin-top: auto;
+  padding-top: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+}
+.pcard__stack {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mute);
+}
+.pcard__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+.cm__built {
+  margin: 26px 0 28px;
+}
+.cm__built ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+@media (min-width: 720px) {
+  .cm__built ul {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+  }
+}
+.cm__built li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.cm__built li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-text);
+  font-weight: 600;
+}

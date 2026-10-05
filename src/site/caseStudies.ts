@@ -9,15 +9,79 @@ export type CaseDetail = {
   type: string;
   timeline: string;
   overview: string;
-  challenge: string[];
-  solution: string[];
-  results: string[];
+  challenge?: string[];
+  solution?: string[];
+  results?: string[];
+  /** For portfolio projects: a single "What I built" list instead of challenge/solution/results */
+  highlights?: string[];
+  role?: string;
   stack: string[];
-  metrics: { value: string; label: string }[];
-  quote: string;
-  who: string;
+  metrics?: { value: string; label: string }[];
+  quote?: string;
+  who?: string;
   images: { src: string; alt: string }[];
 };
+
+/** Extra portfolio projects shown as cards under the main case studies. */
+export type ProjectCard = {
+  slug: string;
+  category: string;
+  name: string;
+  summary: string;
+  stack: string[];
+  mark: string;
+};
+
+export const PROJECT_CARDS: ProjectCard[] = [
+  {
+    slug: "scopeology",
+    category: "Medical EdTech · Saudi Arabia",
+    name: "Scopeology",
+    summary: "Exam-prep platform for Saudi medical residents with timed tests, self-tests, revision modes and analytics.",
+    stack: ["Next.js", "REST APIs", "UI/UX"],
+    mark: "Sc",
+  },
+  {
+    slug: "askinproperties",
+    category: "Real estate · Web platform",
+    name: "AskInProperties",
+    summary: "Real-estate portal for residential and commercial properties, with search, filters, galleries and lead capture.",
+    stack: ["React", "Next.js", "Web APIs"],
+    mark: "Ai",
+  },
+  {
+    slug: "bachay",
+    category: "Mobile app · iOS & Android",
+    name: "Bachay",
+    summary: "Family app for parents and kids: learning, shopping, a vaccination tracker with reminders, and Q&A forums.",
+    stack: ["Flutter", "Firebase", "APIs"],
+    mark: "Ba",
+  },
+  {
+    slug: "ghl-jamie-k-fitness",
+    category: "Automation · Fitness coaching, Australia",
+    name: "GoHighLevel Automation System",
+    summary: "Lead capture, SMS & email nurture, calendar booking and pipeline automation for Jamie K Fitness.",
+    stack: ["GoHighLevel", "SMS & email", "Funnels"],
+    mark: "GHL",
+  },
+  {
+    slug: "commercial-property-services",
+    category: "Facilities & maintenance · Website",
+    name: "Commercial Property Services",
+    summary: "Services and projects website with CMS-managed content, inquiry workflows and fast, SEO-friendly pages.",
+    stack: ["Next.js", "React", "API integration"],
+    mark: "CP",
+  },
+  {
+    slug: "premium-salon",
+    category: "Beauty & wellness · Website",
+    name: "Premium Salon Website",
+    summary: "Elegant, fully responsive website for a luxury salon with service pages, galleries and online booking.",
+    stack: ["Web design", "Responsive", "Booking flow"],
+    mark: "Sa",
+  },
+];
 
 export const CASE_DETAILS: Record<string, CaseDetail> = {
   onlypark: {
@@ -117,6 +181,110 @@ export const CASE_DETAILS: Record<string, CaseDetail> = {
     ],
     quote: "Highly recommended developer, friendly and very knowledgeable.",
     who: "Project stakeholder",
+    images: [],
+  },
+  scopeology: {
+    name: "Scopeology",
+    type: "Medical EdTech platform · Saudi Arabia",
+    timeline: "Web app",
+    overview:
+      "Scopeology is a medical learning platform built for Saudi medical residents preparing for annual promotions and board examinations. The goal was a modern, scalable, easy-to-use system for practising questions, tracking progress and staying on top of medical events.",
+    highlights: [
+      "Complete medical education platform for Saudi residents",
+      "Self-test, timed-test and revision modes",
+      "User dashboards, test modules and analytics",
+      "Backend APIs for questions, scoring and progress tracking",
+      "Dynamic medical events calendar and category system",
+      "Optimized page load, caching and data flow",
+      "Mobile-friendly, secure and scalable architecture",
+    ],
+    stack: ["Next.js", "REST APIs", "UI/UX design", "Web application"],
+    images: [],
+  },
+  askinproperties: {
+    name: "AskInProperties",
+    type: "Real-estate platform · Web app",
+    timeline: "Web app",
+    overview:
+      "AskInProperties is a full-scale real-estate web platform that showcases residential and commercial properties and projects, and turns visitor interest into qualified leads.",
+    highlights: [
+      "Full-featured property listing portal in React/Next.js",
+      "Dynamic listings with search, filters and categories",
+      "Project and property galleries with images and details",
+      "Backend APIs for property data, inquiries and contact forms",
+      "Secure form submissions for lead capture",
+      "Fast page loads and SEO-friendly structure",
+      "Responsive design for desktop and mobile browsing",
+    ],
+    stack: ["React", "Next.js", "Web APIs", "UI/UX"],
+    images: [],
+  },
+  bachay: {
+    name: "Bachay",
+    type: "Flutter mobile app · iOS & Android",
+    timeline: "Mobile app",
+    role: "Mobile Application Developer",
+    overview:
+      "Bachay is a feature-rich mobile app for parents and kids, bringing learning, shopping, health tracking and community together in one family-centred platform.",
+    highlights: [
+      "Cross-platform app for Android and iOS built in Flutter",
+      "Firebase authentication, database and push notifications",
+      "Vaccination tracker with reminders and scheduling",
+      "Shopping for kids' essentials",
+      "Quizzes, articles, learning sections and Q&A forums",
+      "Secure API connections and smooth, optimized app flow",
+    ],
+    stack: ["Flutter", "Firebase", "REST APIs", "UI/UX"],
+    images: [],
+  },
+  "ghl-jamie-k-fitness": {
+    name: "GoHighLevel Automation System",
+    type: "Marketing automation · Jamie K Fitness, Australia",
+    timeline: "Automation build",
+    overview:
+      "A complete GoHighLevel automation system for a fitness coaching business in Australia — from the first form fill to a booked consultation — fully documented and handed over so the client's team runs it independently.",
+    highlights: [
+      "Lead capture forms and consultation funnel",
+      "Automated SMS and email nurture sequences",
+      "Calendar booking integration",
+      "Pipeline stage automation",
+      "Full documentation and hand-over to the client team",
+    ],
+    stack: ["GoHighLevel", "Workflows", "SMS", "Email", "Funnels", "Calendar booking"],
+    images: [],
+  },
+  "commercial-property-services": {
+    name: "Commercial Property Services",
+    type: "Company website · Facilities & maintenance",
+    timeline: "Website",
+    overview:
+      "A professional, user-friendly website for a commercial property services company offering maintenance, facilities management and project delivery.",
+    highlights: [
+      "Full company website built with React/Next.js",
+      "Dynamic services pages and project listings",
+      "“Projects & Contracts” section showcasing past work",
+      "Contact forms, inquiry workflows and CMS-managed content",
+      "Performance-optimized, fast-loading pages",
+      "Clear navigation and SEO-friendly structure",
+    ],
+    stack: ["Next.js", "React", "API integration", "CMS"],
+    images: [],
+  },
+  "premium-salon": {
+    name: "Premium Salon Website",
+    type: "Web design & development · Luxury beauty salon",
+    timeline: "Website",
+    overview:
+      "A luxury beauty salon needed a professional online presence that reflects its brand — elegant, fast on every device, and built to turn visitors into bookings.",
+    highlights: [
+      "Fully responsive, modern website",
+      "Clean, elegant UI aligned with the brand identity",
+      "Service pages, galleries and online appointment booking",
+      "Content sections for treatments and packages",
+      "Optimized page speed, structure and on-page SEO",
+      "Layout designed to improve engagement and conversions",
+    ],
+    stack: ["Web design", "Responsive design", "Booking flow", "On-page SEO"],
     images: [],
   },
 };
