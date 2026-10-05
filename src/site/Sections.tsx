@@ -9,37 +9,6 @@ import onlyPark from "@/assets/onlypark/1.png";
 import tpc from "@/assets/tpc/1.png";
 import portrait from "@/assets/profile-picture.png";
 
-/* ================================================================ Marquee */
-const BUILT = [
-  ["OnlyPark", "PropTech · AU"],
-  ["The Pip Collective", "Trading · FinTech"],
-  ["VentureDive", "Enterprise"],
-  ["Dawlati", "100k+ listings"],
-  ["Onepay Wallet", "50k+ transactions"],
-  ["EFU Life", "Insurance"],
-  ["Autoversal", "500k listings"],
-  ["Core for Contractors", "SaaS"],
-  ["Propfy", "Real estate"],
-];
-
-export function Marquee() {
-  const items = [...BUILT, ...BUILT];
-  return (
-    <div className="marquee" aria-label="Products and teams I've built for">
-      <div className="marquee__label eyebrow" style={{ display: "flex", justifyContent: "center" }}>
-        Platforms I've engineered &amp; teams I've shipped with
-      </div>
-      <div className="marquee__track">
-        {items.map(([n, s], i) => (
-          <span className="marquee__item" key={i} aria-hidden={i >= BUILT.length}>
-            {n} <small>{s}</small>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 /* ================================================================ Problem */
 const PAINS = [
   {
@@ -325,7 +294,7 @@ export function Method() {
 /* ================================================================ Stats */
 export function Stats() {
   return (
-    <section className="section" style={{ paddingBottom: 0 }}>
+    <section className="section" style={{ paddingTop: 8, paddingBottom: 0 }}>
       <div className="wrap">
         <div className="stats">
           <div className="stat">
@@ -359,18 +328,6 @@ export function Stats() {
 }
 
 /* ================================================================ Work */
-function ParallaxImg({ src, alt }: { src: string; alt: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
-  return (
-    <div className="media-inner" ref={ref}>
-      <motion.img src={src} alt={alt} loading="lazy" style={reduce ? undefined : { y }} />
-    </div>
-  );
-}
-
 const CASES = [
   {
     slug: "onlypark",
@@ -532,7 +489,13 @@ export function Work() {
                   <i />
                   <span>{c.url}</span>
                 </div>
-                {c.img ? <ParallaxImg src={c.img} alt={`${c.name} dashboard`} /> : <Terminal />}
+                {c.img ? (
+                  <div className="media-inner">
+                    <img src={c.img} alt={`${c.name} dashboard`} loading="lazy" decoding="async" />
+                  </div>
+                ) : (
+                  <Terminal />
+                )}
               </div>
             </Reveal>
           </article>
@@ -561,18 +524,18 @@ export function Work() {
 /* ================================================================ Testimonials */
 export function Testimonials() {
   return (
-    <section className="section section--dark" id="proof">
+    <section className="section section--dark" id="testimonials">
       <div className="wrap">
         <div className="section-head">
           <div>
             <Reveal className="eyebrow">
               <span className="dot" /> In their words
             </Reveal>
-            <MaskLines className="display h-lg" lines={[<>No ghosting.</>, <>No <em>debt bombs</em>.</>]} />
+            <MaskLines className="display h-lg" lines={[<>What clients <em>say</em>.</>]} />
           </div>
           <Reveal className="lede" delay={0.1}>
-            The most common thing clients say isn't about code. It's that someone finally picked up the phone,
-            told them the truth, and shipped.
+            Every review on my Upwork profile is five stars. The thing clients mention most isn't the code — it's
+            that I communicate clearly, tell them the truth, and ship.
           </Reveal>
         </div>
         <div className="quotes">
@@ -831,15 +794,11 @@ const CAREER = [
 ];
 
 export function About() {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
   return (
     <section className="section" id="about">
       <div className="wrap about">
-        <div ref={ref}>
-          <motion.div className="portrait" style={reduce ? undefined : { y }}>
+        <div>
+          <Reveal className="portrait">
             <img src={portrait} alt="Saim Saudagar" loading="lazy" />
             <div className="portrait__tag">
               <span>
@@ -851,13 +810,13 @@ export function About() {
                 Available
               </span>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
         <div>
           <Reveal className="eyebrow">
-            <span className="dot" /> Who you'll work with
+            <span className="dot" /> About
           </Reveal>
-          <MaskLines className="display h-md" lines={[<>Enterprise training.</>, <>Freelancer <em>accountability</em>.</>]} />
+          <MaskLines className="display h-md" lines={[<>A bit <em>about me</em>.</>]} />
           <Reveal className="lede" delay={0.1}>
             <p style={{ margin: "22px 0 0" }}>
               I'm Saim — a Computer Science grad from IBA Karachi with four years inside engineering teams at
@@ -978,23 +937,23 @@ export function FinalCTA() {
       <div className="wrap final__grid">
         <div>
           <Reveal className="eyebrow">
-            <span className="dot" /> Next step
+            <span className="dot" /> Let's talk
           </Reveal>
           <MaskLines
             className="display h-lg"
-            lines={[<>Stop losing sleep</>, <>over <em>production</em>.</>]}
+            lines={[<>Got a platform that</>, <>needs <em>fixing</em>?</>]}
           />
           <Reveal className="lede" delay={0.1}>
             <p style={{ margin: "22px 0 0" }}>
-              In 15 minutes we'll find the real bottleneck, separate what's risky from what's noise, and decide
-              whether it's a contained fix or ongoing work. If it's not a fit, I'll say so.
+              Tell me what's slow, broken or stuck. In a free 15-minute call I'll tell you honestly what I'd fix
+              first — and whether you even need me.
             </p>
           </Reveal>
         </div>
         <Reveal className="final__paths" delay={0.15}>
           <button className="path" onClick={openBook}>
             <span>
-              <b>Book a 15-minute technical audit</b>
+              <b>Book a free 15-minute call</b>
               <small>Free · confidential · no commitment</small>
             </span>
             <span className="arrow">
