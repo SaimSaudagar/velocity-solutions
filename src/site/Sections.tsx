@@ -9,6 +9,37 @@ import onlyPark from "@/assets/onlypark/1.png";
 import tpc from "@/assets/tpc/1.png";
 import portrait from "@/assets/profile-picture.png";
 
+/* ================================================================ Marquee */
+const BUILT = [
+  ["OnlyPark", "PropTech · AU"],
+  ["The Pip Collective", "Trading · FinTech"],
+  ["VentureDive", "Enterprise"],
+  ["Dawlati", "100k+ listings"],
+  ["Onepay Wallet", "50k+ transactions"],
+  ["EFU Life", "Insurance"],
+  ["Autoversal", "500k listings"],
+  ["Core for Contractors", "SaaS"],
+  ["Propfy", "Real estate"],
+];
+
+export function Marquee() {
+  const items = [...BUILT, ...BUILT];
+  return (
+    <div className="marquee" aria-label="Products and teams I've built for">
+      <div className="marquee__label eyebrow" style={{ display: "flex", justifyContent: "center" }}>
+        Platforms I've engineered &amp; teams I've shipped with
+      </div>
+      <div className="marquee__track">
+        {items.map(([n, s], i) => (
+          <span className="marquee__item" key={i} aria-hidden={i >= BUILT.length}>
+            {n} <small>{s}</small>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ================================================================ Problem */
 const PAINS = [
   {
@@ -328,6 +359,18 @@ export function Stats() {
 }
 
 /* ================================================================ Work */
+function ParallaxImg({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  return (
+    <div className="media-inner" ref={ref}>
+      <motion.img src={src} alt={alt} loading="lazy" style={reduce ? undefined : { y }} />
+    </div>
+  );
+}
+
 const CASES = [
   {
     slug: "onlypark",
@@ -489,13 +532,7 @@ export function Work() {
                   <i />
                   <span>{c.url}</span>
                 </div>
-                {c.img ? (
-                  <div className="media-inner">
-                    <img src={c.img} alt={`${c.name} dashboard`} loading="lazy" decoding="async" />
-                  </div>
-                ) : (
-                  <Terminal />
-                )}
+                {c.img ? <ParallaxImg src={c.img} alt={`${c.name} dashboard`} /> : <Terminal />}
               </div>
             </Reveal>
           </article>
@@ -794,11 +831,15 @@ const CAREER = [
 ];
 
 export function About() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
   return (
     <section className="section" id="about">
       <div className="wrap about">
-        <div>
-          <Reveal className="portrait">
+        <div ref={ref}>
+          <motion.div className="portrait" style={reduce ? undefined : { y }}>
             <img src={portrait} alt="Saim Saudagar" loading="lazy" />
             <div className="portrait__tag">
               <span>
@@ -810,7 +851,7 @@ export function About() {
                 Available
               </span>
             </div>
-          </Reveal>
+          </motion.div>
         </div>
         <div>
           <Reveal className="eyebrow">
@@ -865,7 +906,7 @@ const FAQS = [
   ],
   [
     "Why won't you send a proposal before a call?",
-    "Because in complex systems, that's how scope gets mispriced and expectations break. A 15-minute technical consult means any proposal you get is accurate, scoped and realistic. You'll have it within 48 hours of the call.",
+    "Because in complex systems, that's how scope gets mispriced and expectations break. A short technical conversation first means any proposal you get is accurate, scoped and realistic. You'll have it within 48 hours.",
   ],
   [
     "What happens with the existing code from my last developer?",
@@ -945,7 +986,7 @@ export function FinalCTA() {
           />
           <Reveal className="lede" delay={0.1}>
             <p style={{ margin: "22px 0 0" }}>
-              Tell me what's slow, broken or stuck. In a free 15-minute call I'll tell you honestly what I'd fix
+              Tell me what's slow, broken or stuck. I'll reply within 24 hours and tell you honestly what I'd fix
               first — and whether you even need me.
             </p>
           </Reveal>
@@ -953,8 +994,8 @@ export function FinalCTA() {
         <Reveal className="final__paths" delay={0.15}>
           <button className="path" onClick={openBook}>
             <span>
-              <b>Book a free 15-minute call</b>
-              <small>Free · confidential · no commitment</small>
+              <b>Get in touch</b>
+              <small>{CONTACT_EMAIL} · reply within 24 hours</small>
             </span>
             <span className="arrow">
               <Arrow />
@@ -969,15 +1010,6 @@ export function FinalCTA() {
               <Arrow />
             </span>
           </button>
-          <a className="path" href={`mailto:${CONTACT_EMAIL}?subject=Project%20enquiry`}>
-            <span>
-              <b>Email the details</b>
-              <small>Reply within 24 hours with a clear plan</small>
-            </span>
-            <span className="arrow">
-              <Arrow />
-            </span>
-          </a>
         </Reveal>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Arrow, EASE } from "./motion";
@@ -46,7 +46,7 @@ export function Nav() {
         </nav>
         <div className="nav__right">
           <button className="btn btn--sm" onClick={openBook}>
-            Book a call
+            Get in touch
             <span className="arrow">
               <Arrow size={12} />
             </span>
@@ -64,12 +64,17 @@ function VSL() {
   const fallback = () =>
     setThumb((t) => (t && t.includes("maxres") ? `https://i.ytimg.com/vi/${VSL_ID}/hqdefault.jpg` : null));
 
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 25%"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1]);
+
   useEffect(() => {
     (window as unknown as { __vslPlaying?: boolean }).__vslPlaying = playing;
   }, [playing]);
 
   return (
-    <div className="vsl">
+    <motion.div className="vsl" ref={ref} style={reduce ? undefined : { scale }}>
       {playing ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${VSL_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
@@ -97,7 +102,7 @@ function VSL() {
           </span>
         </button>
       )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -119,11 +124,15 @@ export function Hero() {
         </motion.span>
 
         <motion.h1 className="display hero__title" {...fade(0.05)}>
-          Hi, I'm Saim. I fix slow, broken platforms and make them <em>scale</em>.
+          <span className="hl">Slow app? Failing payments?</span>
+          <span className="hl">Developer disappeared?</span>
+          <span className="hl">
+            I'm the engineer who <em>fixes it</em>.
+          </span>
         </motion.h1>
 
         <motion.p className="hero__sub" {...fade(0.15)}>
-          Full-stack engineer with 4+ years building FinTech, SaaS and real-estate products.{" "}
+          I'm Saim, a full-stack engineer with 4+ years building FinTech, SaaS and real-estate products.{" "}
           <b>100% job success</b> and <b>5.0★ from 17 client reviews</b> on Upwork.
         </motion.p>
 
@@ -137,7 +146,7 @@ export function Hero() {
 
         <motion.div className="hero__ctas" {...fade(0.35)}>
           <button className="btn" onClick={openBook}>
-            Book a free 15-min call
+            Get in touch
             <span className="arrow">
               <Arrow />
             </span>

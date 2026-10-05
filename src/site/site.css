@@ -2531,9 +2531,6 @@ body:has(.site) {
 }
 
 /* Lighter, flatter surfaces */
-.site .vsl__play::after {
-  display: none;
-}
 .site .case__media {
   border-color: var(--line);
 }
@@ -2564,4 +2561,11 @@ body:has(.site) {
 }
 .sticky-cta .btn--ghost {
   background: #fff;
+}
+
+.hero__title .hl {
+  display: block;
+}
+.hero__title {
+  max-width: none;
 }

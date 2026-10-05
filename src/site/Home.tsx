@@ -1,11 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import Lenis from "lenis";
 import { ReactNode, useCallback, useEffect, useState } from "react";
-import { PopupModal } from "react-calendly";
 import "@fontsource-variable/geist-mono";
 import "./site.css";
 import { ActionsContext } from "./actions";
 import { Hero, Nav } from "./Hero";
-import { CALENDLY_URL } from "./lead";
+import { CONTACT_EMAIL } from "./lead";
 import { Arrow, EASE } from "./motion";
 import Scorecard from "./Scorecard";
 import {
@@ -15,6 +15,7 @@ import {
   FinalCTA,
   Footer,
   Magnet,
+  Marquee,
   Method,
   Offers,
   Problem,
@@ -42,14 +43,14 @@ function safeSet(k: string, v: string) {
 
 /** Shared page frame: nav, footer, scorecard modal, booking popup, mobile CTA. */
 function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNode; nudge?: boolean }) {
-  const [bookOpen, setBookOpen] = useState(false);
   const [scoreOpen, setScoreOpen] = useState(false);
   const [nudge, setNudge] = useState(false);
 
+  /* "Get in touch" opens an email to Saim (no booking calendar) */
   const openBook = useCallback(() => {
     setScoreOpen(false);
     setNudge(false);
-    setBookOpen(true);
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Project enquiry")}`;
   }, []);
   const openScorecard = useCallback(() => {
     setNudge(false);
@@ -57,12 +58,44 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
     setScoreOpen(true);
   }, []);
 
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
+
+  /* Smooth scrolling */
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    let raf = 0;
+    const loop = (t: number) => {
+      lenis.raf(t);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const id = a.getAttribute("href")!;
+      const el = id === "#top" ? document.body : document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      lenis.scrollTo(el as HTMLElement, { offset: id === "#top" ? 0 : -72 });
+    };
+    document.addEventListener("click", onClick);
+    return () => {
+      cancelAnimationFrame(raf);
+      document.removeEventListener("click", onClick);
+      lenis.destroy();
+    };
+  }, []);
+
   /* Lock page scroll while a modal is open */
   useEffect(() => {
-    document.body.style.overflow = scoreOpen || bookOpen ? "hidden" : "";
-  }, [scoreOpen, bookOpen]);
+    const locked = scoreOpen;
+    document.documentElement.classList.toggle("lenis-stopped", locked);
+    document.body.style.overflow = locked ? "hidden" : "";
+  }, [scoreOpen]);
 
-  /* Gentle scorecard nudge: once per session, after 12s or half-way down, never over a playing video */
+  /* Scorecard nudge: once per session, after 9s or 35% down, never over a playing video */
   useEffect(() => {
     if (!allowNudge || safeGet(POPUP_KEY) || safeGet("ss_lead_captured")) return;
     let fired = false;
@@ -73,10 +106,10 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
       safeSet(POPUP_KEY, "1");
       setNudge(true);
     };
-    const t = window.setTimeout(fire, 12000);
+    const t = window.setTimeout(fire, 9000);
     const onScroll = () => {
       const h = document.documentElement;
-      if (h.scrollTop / (h.scrollHeight - h.clientHeight) > 0.5) fire();
+      if (h.scrollTop / (h.scrollHeight - h.clientHeight) > 0.35) fire();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -95,6 +128,7 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
   return (
     <ActionsContext.Provider value={{ openBook, openScorecard }}>
       <div className="site">
+        <motion.div className="progress-line" style={{ scaleX: progress }} />
         <Nav />
         <main>{children}</main>
         <Footer />
@@ -104,12 +138,12 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
             Free scale score
           </button>
           <button className="btn" onClick={openBook}>
-            Book a call
+            Get in touch
           </button>
         </div>
 
         <AnimatePresence>
-          {nudge && !scoreOpen && !bookOpen && (
+          {nudge && !scoreOpen && (
             <motion.div
               className="toast-lite"
               initial={{ opacity: 0, y: 30 }}
@@ -146,6 +180,7 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={(e) => e.target === e.currentTarget && setScoreOpen(false)}
+              data-lenis-prevent
             >
               <motion.div
                 className="modal"
@@ -180,15 +215,6 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
           )}
         </AnimatePresence>
 
-        {bookOpen && (
-          <PopupModal
-            url={CALENDLY_URL}
-            open={bookOpen}
-            onModalClose={() => setBookOpen(false)}
-            rootElement={document.getElementById("root") as HTMLElement}
-            pageSettings={{ primaryColor: "0ea5a0", textColor: "0f1218", hideGdprBanner: true }}
-          />
-        )}
       </div>
     </ActionsContext.Provider>
   );
@@ -199,6 +225,7 @@ export default function Home() {
   return (
     <SiteShell nudge>
       <Hero />
+      <Marquee />
       <Stats />
       <Work />
       <Testimonials />

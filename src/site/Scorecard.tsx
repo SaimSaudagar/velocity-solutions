@@ -402,7 +402,7 @@ export default function Scorecard({
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               <button className="btn" onClick={onBook}>
-                Walk me through the fixes — free
+                Get in touch about these fixes
                 <span className="arrow">
                   <Arrow />
                 </span>
@@ -411,7 +411,7 @@ export default function Scorecard({
                 Retake
               </button>
             </div>
-            <p className="fine">15-minute call. I'll map your top risks and tell you honestly whether they need fixing yet.</p>
+            <p className="fine">Email me your score. I'll reply within 24 hours and tell you honestly whether these need fixing yet.</p>
           </motion.div>
         )}
       </AnimatePresence>
