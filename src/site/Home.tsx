@@ -8,6 +8,8 @@ import { Hero, Nav } from "./Hero";
 import { CONTACT_EMAIL } from "./lead";
 import { Arrow, EASE } from "./motion";
 import Scorecard from "./Scorecard";
+import CaseModal from "./CaseModal";
+import { CASE_DETAILS } from "./caseStudies";
 import {
   About,
   Compare,
@@ -28,6 +30,28 @@ import {
 function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNode; nudge?: boolean }) {
   const [scoreOpen, setScoreOpen] = useState(false);
   const [nudge, setNudge] = useState(false);
+  /* Case-study panel; ?case=<slug> in the URL opens it directly (old /case-study/<slug> links redirect here) */
+  const [caseSlug, setCaseSlug] = useState<string | null>(() => {
+    const c = new URLSearchParams(window.location.search).get("case");
+    return c && CASE_DETAILS[c] ? c : null;
+  });
+
+  const setCaseUrl = (slug: string | null) => {
+    const url = new URL(window.location.href);
+    if (slug) url.searchParams.set("case", slug);
+    else url.searchParams.delete("case");
+    window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+  };
+  const openCase = useCallback((slug: string) => {
+    if (!CASE_DETAILS[slug]) return;
+    setNudge(false);
+    setCaseSlug(slug);
+    setCaseUrl(slug);
+  }, []);
+  const closeCase = useCallback(() => {
+    setCaseSlug(null);
+    setCaseUrl(null);
+  }, []);
 
   /* "Get in touch" opens an email to Saim (no booking calendar) */
   const openBook = useCallback(() => {
@@ -72,10 +96,10 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
 
   /* Lock page scroll while a modal is open */
   useEffect(() => {
-    const locked = scoreOpen;
+    const locked = scoreOpen || !!caseSlug;
     document.documentElement.classList.toggle("lenis-stopped", locked);
     document.body.style.overflow = locked ? "hidden" : "";
-  }, [scoreOpen]);
+  }, [scoreOpen, caseSlug]);
 
   /* Scorecard popup (bottom-left): shows on every page load, after 5s or 25% scroll, never over a playing video */
   useEffect(() => {
@@ -113,7 +137,7 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
   }, [scoreOpen]);
 
   return (
-    <ActionsContext.Provider value={{ openBook, openScorecard }}>
+    <ActionsContext.Provider value={{ openBook, openScorecard, openCase }}>
       <div className="site">
         <motion.div className="progress-line" style={{ scaleX: progress }} />
         <Nav />
@@ -130,7 +154,7 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
         </div>
 
         <AnimatePresence>
-          {nudge && !scoreOpen && (
+          {nudge && !scoreOpen && !caseSlug && (
             <motion.div
               className="toast-lite"
               initial={{ opacity: 0, y: 30 }}
@@ -156,6 +180,21 @@ function SiteShell({ children, nudge: allowNudge = false }: { children: ReactNod
                 ×
               </button>
             </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {caseSlug && (
+            <CaseModal
+              key="case"
+              slug={caseSlug}
+              onClose={closeCase}
+              onNavigate={openCase}
+              onContact={() => {
+                closeCase();
+                openBook();
+              }}
+            />
           )}
         </AnimatePresence>
 

@@ -1,6 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { Arrow, CountUp, EASE, MaskLines, Reveal } from "./motion";
 import Scorecard from "./Scorecard";
 import { useActions } from "./actions";
@@ -469,6 +468,7 @@ const SHIPPED = [
 ];
 
 export function Work() {
+  const { openCase } = useActions();
   return (
     <section className="section" id="work">
       <div className="wrap">
@@ -520,9 +520,9 @@ export function Work() {
               <blockquote className="case__quote" style={{ margin: "24px 0 0" }}>
                 “{c.quote}”<cite>— {c.who}</cite>
               </blockquote>
-              <Link to={`/case-study/${c.slug}`} className="link-u mono" style={{ display: "inline-flex", gap: 8, marginTop: 22, fontSize: 13 }}>
-                Read the case study <Arrow size={12} />
-              </Link>
+              <button className="case__more" onClick={() => openCase(c.slug)}>
+                Read the full story <Arrow size={12} />
+              </button>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="case__media">

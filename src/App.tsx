@@ -2,16 +2,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import { Services } from "./site/Home";
-import Book from "./pages/Book";
-import CaseStudy from "./pages/CaseStudy";
-import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
+
+/** Old case-study URLs now open the matching panel on the homepage. */
+const CaseRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={slug ? `/?case=${encodeURIComponent(slug)}` : "/"} replace />;
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -21,9 +24,9 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/services" element={<Services />} />
-        <Route path="/book" element={<PageTransition><Book /></PageTransition>} />
-        <Route path="/case-study/:slug" element={<PageTransition><CaseStudy /></PageTransition>} />
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        <Route path="/case-study/:slug" element={<CaseRedirect />} />
+        {/* Old pages (booking, blog, anything unknown) go to the homepage */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   );
