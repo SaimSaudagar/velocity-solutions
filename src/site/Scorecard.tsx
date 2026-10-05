@@ -101,7 +101,7 @@ function verdictFor(score: number) {
   };
 }
 
-const colorFor = (v: number) => (v >= 80 ? "#23863f" : v >= 55 ? "#c98a12" : "#d9541e");
+const colorFor = (v: number) => (v >= 80 ? "#4ade80" : v >= 55 ? "#fbbf24" : "#f97415");
 
 type Step = "intro" | "quiz" | "gate" | "result";
 

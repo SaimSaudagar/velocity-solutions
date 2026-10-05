@@ -142,7 +142,7 @@ export default function Home() {
           <button className="btn btn--light" onClick={openScorecard}>
             Free scale score
           </button>
-          <button className="btn" onClick={openBook} style={{ border: "1px solid rgba(243,240,232,.25)" }}>
+          <button className="btn" onClick={openBook} style={{ border: "1px solid rgba(255,255,255,.2)" }}>
             Book a call
           </button>
         </div>
@@ -161,7 +161,7 @@ export default function Home() {
             >
               <div>
                 <b>Will your stack survive 10× traffic?</b>
-                <span style={{ color: "#c9c5bb" }}>Free 90-second scorecard — get your score and top 3 fixes.</span>
+                <span style={{ color: "var(--ink-3)" }}>Free 90-second scorecard — get your score and top 3 fixes.</span>
                 <div style={{ marginTop: 14 }}>
                   <button className="btn btn--light btn--sm" onClick={openScorecard}>
                     Get my score

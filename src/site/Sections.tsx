@@ -276,9 +276,9 @@ export function Method() {
             <motion.i style={{ scaleX: progress }} />
           </div>
           <div className="method__seq">
-            <span style={{ color: active >= 0 ? "var(--paper)" : undefined }}>S · Security</span>
-            <span style={{ color: active >= 1 ? "var(--paper)" : undefined }}>P · Performance</span>
-            <span style={{ color: active >= 2 ? "var(--paper)" : undefined }}>S · Scale</span>
+            <span style={{ color: active >= 0 ? "var(--ink)" : undefined }}>S · Security</span>
+            <span style={{ color: active >= 1 ? "var(--ink)" : undefined }}>P · Performance</span>
+            <span style={{ color: active >= 2 ? "var(--ink)" : undefined }}>S · Scale</span>
           </div>
         </div>
 
@@ -824,7 +824,7 @@ export function Compare() {
 
 /* ================================================================ About */
 const CAREER = [
-  ["2026 — now", "Glintvex", "Full-stack engineer & technical consultant. 8+ end-to-end apps for FinTech, real estate and trading clients."],
+  ["2026 — now", "Glintvex (US)", "Full-Stack Software Engineer & Technical Consultant. 8+ end-to-end apps for FinTech, real estate and trading clients."],
   ["2024 — 2026", "VentureDive", "Led a 3-person team; re-architected backends and cut infrastructure cost by 28%."],
   ["2023 — 2024", "EFU Life Assurance", "Java middleware on IBM BPM — 38% less manual work in policy processing."],
   ["2022 — 2023", "MonetDT", "Spring Boot & NestJS wallet microservices; 34% fewer failed transactions."],
@@ -860,9 +860,10 @@ export function About() {
           <MaskLines className="display h-md" lines={[<>Enterprise training.</>, <>Freelancer <em>accountability</em>.</>]} />
           <Reveal className="lede" delay={0.1}>
             <p style={{ margin: "22px 0 0" }}>
-              I'm Saim — a Computer Science grad from IBA Karachi who spent four years inside enterprise
-              engineering teams before going independent. That's where the S.P.S. method comes from: the
-              discipline of corporate engineering, without the meetings, layers and 12-month timelines.
+              I'm Saim — a Computer Science grad from IBA Karachi with four years inside engineering teams at
+              VentureDive, EFU Life and now Glintvex, a US company where I'm a full-stack engineer and technical
+              consultant. That's where the S.P.S. method comes from: the discipline of enterprise engineering,
+              without the meetings, layers and 12-month timelines.
             </p>
             <p style={{ margin: "16px 0 0" }}>
               You talk directly to the person writing your code. I explain technical decisions in business terms,
@@ -1032,7 +1033,7 @@ export function Footer() {
           Saim <em>Saudagar</em>
         </div>
         <div className="footer__row">
-          <span>© {new Date().getFullYear()} Saim Saudagar · Glintvex. Enterprise-grade development at freelancer speed.</span>
+          <span>© {new Date().getFullYear()} Saim Saudagar. Enterprise-grade development at freelancer speed.</span>
           <nav aria-label="Footer">
             <a className="link-u" href="https://linkedin.com/in/saimsaudagar" target="_blank" rel="noreferrer">
               LinkedIn

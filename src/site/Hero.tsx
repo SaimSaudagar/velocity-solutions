@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Arrow, EASE, MaskLines } from "./motion";
 import { VSL_ID } from "./lead";
 import { useActions } from "./actions";
+import logoMark from "@/assets/logo-mark.png";
 
 /* ------------------------------------------------------------------ Nav */
 export function Nav() {
@@ -31,10 +32,10 @@ export function Nav() {
     <header className={`nav ${scrolled ? "is-scrolled" : ""} ${hidden ? "is-hidden" : ""} ${dark ? "is-dark" : ""}`}>
       <div className="wrap nav__inner">
         <a href="#top" className="brand" aria-label="Saim Saudagar — home">
-          <span className="brand__mark">ss</span>
+          <img className="brand__mark" src={logoMark} alt="" />
           <span className="brand__name">
             Saim Saudagar
-            <small>Glintvex · Systems engineering</small>
+            <small>Full-stack engineer · FinTech &amp; SaaS</small>
           </span>
         </a>
         <nav className="nav__links" aria-label="Primary">
@@ -192,7 +193,7 @@ export function Hero() {
             <b>5.0★</b> across 17 reviews
           </span>
           <span>
-            Ex-<b>VentureDive</b> engineer
+            Engineer at <b>Glintvex</b> · ex-<b>VentureDive</b>
           </span>
         </motion.div>
 
