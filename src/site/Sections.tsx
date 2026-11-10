@@ -6,6 +6,7 @@ import { useActions } from "./actions";
 import { CONTACT_EMAIL } from "./lead";
 import { PROJECT_CARDS } from "./caseStudies";
 import ToptalBadge from "./ToptalBadge";
+import ProjectMark from "./ProjectMark";
 import onlyPark from "@/assets/onlypark/1.png";
 import tpc from "@/assets/tpc/1.png";
 import portrait from "@/assets/profile-picture.png";
@@ -546,9 +547,7 @@ export function Work() {
           {PROJECT_CARDS.map((p, n) => (
             <Reveal key={p.slug} delay={(n % 3) * 0.06}>
               <button className="pcard" onClick={() => openCase(p.slug)}>
-                <span className="pcard__mark" aria-hidden="true">
-                  {p.mark}
-                </span>
+                <ProjectMark p={p} />
                 <span className="pcard__cat">{p.category}</span>
                 <span className="pcard__name">{p.name}</span>
                 <span className="pcard__sum">{p.summary}</span>

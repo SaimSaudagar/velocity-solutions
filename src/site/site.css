@@ -2816,6 +2816,16 @@ body:has(.site) {
   font-size: 15px;
   letter-spacing: -0.02em;
 }
+.pcard__mark--logo img {
+  display: block;
+  max-height: 24px;
+  max-width: 64px;
+  width: auto;
+  height: auto;
+}
+.pcard__mark--logo img[src*="scopeology"] {
+  max-height: 32px;
+}
 .pcard__cat {
   font-family: var(--mono);
   font-size: 11px;

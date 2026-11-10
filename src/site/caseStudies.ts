@@ -1,3 +1,5 @@
+import dawlatiLogo from "@/assets/logo-dawlati.png";
+import scopeologyLogo from "@/assets/logo-scopeology.png";
 import onlyPark1 from "@/assets/onlypark/1.png";
 import onlyPark2 from "@/assets/onlypark/2.png";
 import tpc1 from "@/assets/tpc/1.png";
@@ -30,6 +32,10 @@ export type ProjectCard = {
   summary: string;
   stack: string[];
   mark: string;
+  /** Real brand logo (white, for the accent tile). */
+  logo?: string;
+  /** Line icon used when there is no brand logo. */
+  icon?: "home" | "family" | "flow" | "building" | "scissors";
 };
 
 export const PROJECT_CARDS: ProjectCard[] = [
@@ -40,6 +46,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Bilingual (English & Arabic) job platform for the UAE, with a backend powering 100,000+ listings and applications.",
     stack: ["Next.js", "NestJS", "REST APIs"],
     mark: "Da",
+    logo: dawlatiLogo,
   },
   {
     slug: "scopeology",
@@ -48,6 +55,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Exam-prep platform for Saudi medical residents with timed tests, self-tests, revision modes and analytics.",
     stack: ["Next.js", "REST APIs", "UI/UX"],
     mark: "Sc",
+    logo: scopeologyLogo,
   },
   {
     slug: "askinproperties",
@@ -56,6 +64,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Real-estate portal for residential and commercial properties, with search, filters, galleries and lead capture.",
     stack: ["React", "Next.js", "Web APIs"],
     mark: "Ai",
+    icon: "home",
   },
   {
     slug: "bachay",
@@ -64,6 +73,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Family app for parents and kids: learning, shopping, a vaccination tracker with reminders, and Q&A forums.",
     stack: ["Flutter", "Firebase", "APIs"],
     mark: "Ba",
+    icon: "family",
   },
   {
     slug: "ghl-jamie-k-fitness",
@@ -72,6 +82,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Lead capture, SMS & email nurture, calendar booking and pipeline automation for Jamie K Fitness.",
     stack: ["GoHighLevel", "SMS & email", "Funnels"],
     mark: "GHL",
+    icon: "flow",
   },
   {
     slug: "commercial-property-services",
@@ -80,6 +91,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Services and projects website with CMS-managed content, inquiry workflows and fast, SEO-friendly pages.",
     stack: ["Next.js", "React", "API integration"],
     mark: "CP",
+    icon: "building",
   },
   {
     slug: "premium-salon",
@@ -88,6 +100,7 @@ export const PROJECT_CARDS: ProjectCard[] = [
     summary: "Elegant, fully responsive website for a luxury salon with service pages, galleries and online booking.",
     stack: ["Web design", "Responsive", "Booking flow"],
     mark: "Sa",
+    icon: "scissors",
   },
 ];
 
