@@ -5,6 +5,7 @@ import Scorecard from "./Scorecard";
 import { useActions } from "./actions";
 import { CONTACT_EMAIL } from "./lead";
 import { PROJECT_CARDS } from "./caseStudies";
+import ToptalBadge from "./ToptalBadge";
 import onlyPark from "@/assets/onlypark/1.png";
 import tpc from "@/assets/tpc/1.png";
 import portrait from "@/assets/profile-picture.png";
@@ -670,6 +671,18 @@ export function Testimonials() {
               <Arrow size={12} />
             </span>
           </a>
+        </Reveal>
+        <Reveal className="toptal-strip" delay={0.08}>
+          <div className="toptal-strip__text">
+            <span className="eyebrow">
+              <span className="dot" /> Also vetted by Toptal
+            </span>
+            <p>
+              Accepted into Toptal's network, the top 3% of freelance talent, after screening on skills, live
+              coding and communication.
+            </p>
+          </div>
+          <ToptalBadge />
         </Reveal>
       </div>
     </section>

@@ -1718,6 +1718,32 @@ html.lenis body {
   text-transform: uppercase;
 }
 
+.toptal-strip {
+  margin-top: 16px;
+  padding: 24px 28px;
+  border-radius: 20px;
+  border: 1px solid var(--line-dark);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+}
+.toptal-strip__text {
+  flex: 1 1 320px;
+  max-width: 560px;
+}
+.toptal-strip__text p {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.toptal-badge {
+  flex: none;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 /* --------------------------------------------------------------------------
    Offers
    -------------------------------------------------------------------------- */
@@ -2556,7 +2582,8 @@ body:has(.site) {
 .section--dark .quote:not(.quote--feature) {
   border-color: var(--line);
 }
-.upwork-strip {
+.upwork-strip,
+.toptal-strip {
   border-color: var(--line);
   background: var(--surface-2);
 }

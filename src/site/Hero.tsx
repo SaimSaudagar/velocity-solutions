@@ -167,6 +167,9 @@ export function Hero() {
             <b>Top Rated</b> on Upwork
           </span>
           <span>
+            <b>Top 3%</b> on Toptal
+          </span>
+          <span>
             Next.js · NestJS · Spring Boot · Flutter · AWS
           </span>
         </motion.div>
